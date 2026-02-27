@@ -164,7 +164,7 @@ export default function AuthScreen() {
                     <div className="auth-form-card animate-fade-in">
                         <div className="auth-form-card__header">
                             <ShieldCheck size={26} color="#0B5394" />
-                            <h1>{t('login_title')}</h1>
+                            <h1>{loginRole === 'admin' ? t('admin_login_title') : t('login_title')}</h1>
                         </div>
 
                         {/* Role Toggle */}

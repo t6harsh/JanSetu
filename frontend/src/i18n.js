@@ -23,6 +23,7 @@ const resources = {
       "tap_to_start": "Touch Screen to Begin",
       // Auth
       "login_title": "Citizen Authentication",
+      "admin_login_title": "Admin Authentication",
       "enter_aadhaar": "Enter Aadhaar Number / Mobile Number",
       "send_otp": "Send OTP",
       "enter_otp": "Enter 6-Digit OTP",
@@ -130,6 +131,7 @@ const resources = {
       "water_normal": "सामान्य",
       "tap_to_start": "शुरू करने के लिए स्क्रीन टच करें",
       "login_title": "नागरिक प्रमाणीकरण",
+      "admin_login_title": "व्यवस्थापक प्रमाणीकरण",
       "enter_aadhaar": "आधार नंबर / मोबाइल नंबर दर्ज करें",
       "send_otp": "OTP भेजें",
       "enter_otp": "6-अंकीय OTP दर्ज करें",
