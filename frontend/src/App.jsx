@@ -19,6 +19,7 @@ function App() {
   const [fontScale, setFontScale] = useState('default');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [citizenName, setCitizenName] = useState('');
+  const [userRole, setUserRole] = useState(null); // 'citizen' | 'admin'
 
   const changeFontScale = (scale) => {
     setFontScale(scale);
@@ -29,21 +30,23 @@ function App() {
     i18n.changeLanguage(lng);
   };
 
-  const login = (name) => {
+  const login = (name, role = 'citizen') => {
     setIsAuthenticated(true);
     setCitizenName(name || 'Citizen');
+    setUserRole(role);
   };
 
   const logout = () => {
     setIsAuthenticated(false);
     setCitizenName('');
+    setUserRole(null);
   };
 
   return (
     <AppContext.Provider value={{
       fontScale, changeFontScale,
       changeLanguage, currentLang: i18n.language,
-      isAuthenticated, login, logout, citizenName
+      isAuthenticated, login, logout, citizenName, userRole
     }}>
       <div className="app-layout" data-font-scale={fontScale}>
         <Routes>
@@ -52,7 +55,9 @@ function App() {
           <Route path="/auth" element={<AuthScreen />} />
           <Route element={<Layout />}>
             <Route path="/dashboard" element={
-              isAuthenticated ? <CitizenDashboard /> : <Navigate to="/auth" />
+              isAuthenticated
+                ? (userRole === 'admin' ? <AdminDashboard /> : <CitizenDashboard />)
+                : <Navigate to="/auth" />
             } />
             <Route path="/bill-payment" element={
               isAuthenticated ? <BillPayment /> : <Navigate to="/auth" />
@@ -66,7 +71,9 @@ function App() {
             <Route path="/documents" element={
               isAuthenticated ? <MyDocuments /> : <Navigate to="/auth" />
             } />
-            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin" element={
+              isAuthenticated && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/dashboard" />
+            } />
           </Route>
         </Routes>
       </div>

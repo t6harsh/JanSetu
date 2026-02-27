@@ -2,7 +2,7 @@ import { useState, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../App';
-import { ShieldCheck, ArrowRight, RotateCcw, Fingerprint, KeyRound, Lock } from 'lucide-react';
+import { ShieldCheck, ArrowRight, RotateCcw, Fingerprint, KeyRound, Lock, User, Shield } from 'lucide-react';
 import VirtualKeyboard from '../components/VirtualKeyboard';
 
 export default function AuthScreen() {
@@ -15,6 +15,7 @@ export default function AuthScreen() {
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [loginRole, setLoginRole] = useState('citizen'); // 'citizen' | 'admin'
     const otpRefs = useRef([]);
 
     const formatAadhaar = (val) => {
@@ -62,7 +63,7 @@ export default function AuthScreen() {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-            login('Rajesh Kumar');
+            login('Rajesh Kumar', loginRole);
             navigate('/dashboard');
         }, 1500);
     };
@@ -164,6 +165,24 @@ export default function AuthScreen() {
                         <div className="auth-form-card__header">
                             <ShieldCheck size={26} color="#0B5394" />
                             <h1>{t('login_title')}</h1>
+                        </div>
+
+                        {/* Role Toggle */}
+                        <div className="auth-role-toggle">
+                            <button
+                                className={`auth-role-toggle__btn ${loginRole === 'citizen' ? 'active' : ''}`}
+                                onClick={() => setLoginRole('citizen')}
+                                type="button"
+                            >
+                                <User size={16} /> Citizen Login
+                            </button>
+                            <button
+                                className={`auth-role-toggle__btn ${loginRole === 'admin' ? 'active' : ''}`}
+                                onClick={() => setLoginRole('admin')}
+                                type="button"
+                            >
+                                <Shield size={16} /> Admin Login
+                            </button>
                         </div>
 
                         {/* Progress Steps */}

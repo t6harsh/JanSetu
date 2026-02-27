@@ -17,7 +17,12 @@ export default function Layout() {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
-    const { fontScale, changeFontScale, currentLang, changeLanguage, isAuthenticated, logout } = useContext(AppContext);
+    const { fontScale, changeFontScale, currentLang, changeLanguage, isAuthenticated, logout, userRole } = useContext(AppContext);
+
+    const filteredNavLinks = navLinks.filter(link => {
+        if (link.path === '/admin') return userRole === 'admin';
+        return true;
+    });
 
     const handleLogout = () => {
         logout();
@@ -90,7 +95,7 @@ export default function Layout() {
                 <div className="uidai-nav-bar">
                     <div className="uidai-nav-bar__container">
                         <nav className="uidai-nav-menus">
-                            {navLinks.map((link) => {
+                            {filteredNavLinks.map((link) => {
                                 const Icon = link.icon;
                                 const isActive = location.pathname === link.path;
                                 return (
