@@ -72,6 +72,15 @@ function App() {
               isAuthenticated ? <MyDocuments /> : <Navigate to="/auth" />
             } />
             <Route path="/admin" element={
+              isAuthenticated && userRole === 'admin' ? <Navigate to="/dashboard" /> : <Navigate to="/dashboard" />
+            } />
+            <Route path="/admin/complaints" element={
+              isAuthenticated && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/dashboard" />
+            } />
+            <Route path="/admin/reports" element={
+              isAuthenticated && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/dashboard" />
+            } />
+            <Route path="/admin/content" element={
               isAuthenticated && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/dashboard" />
             } />
           </Route>

@@ -2,15 +2,21 @@ import { useContext } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../App';
-import { LogOut, Monitor, Type, Volume2, ChevronDown, LayoutDashboard, CreditCard, MessageSquareWarning, Search, FileText, ShieldCheck } from 'lucide-react';
+import { LogOut, Monitor, Type, Volume2, ChevronDown, LayoutDashboard, CreditCard, MessageSquareWarning, Search, FileText, Settings, BarChart3, AlertCircle } from 'lucide-react';
 
-const navLinks = [
+const citizenNavLinks = [
     { label: 'Services', path: '/dashboard', icon: LayoutDashboard },
     { label: 'Pay Bills', path: '/bill-payment', icon: CreditCard },
     { label: 'Grievance', path: '/grievance', icon: MessageSquareWarning },
     { label: 'Track Status', path: '/track-status', icon: Search },
     { label: 'Documents', path: '/documents', icon: FileText },
-    { label: 'Admin', path: '/admin', icon: ShieldCheck },
+];
+
+const adminNavLinks = [
+    { label: 'Overview', path: '/dashboard', icon: LayoutDashboard },
+    { label: 'Manage Complaints', path: '/admin/complaints', icon: AlertCircle },
+    { label: 'Reports & Analytics', path: '/admin/reports', icon: BarChart3 },
+    { label: 'Content Management', path: '/admin/content', icon: Settings },
 ];
 
 export default function Layout() {
@@ -19,10 +25,7 @@ export default function Layout() {
     const location = useLocation();
     const { fontScale, changeFontScale, currentLang, changeLanguage, isAuthenticated, logout, userRole } = useContext(AppContext);
 
-    const filteredNavLinks = navLinks.filter(link => {
-        if (link.path === '/admin') return userRole === 'admin';
-        return true;
-    });
+    const currentNavLinks = userRole === 'admin' ? adminNavLinks : citizenNavLinks;
 
     const handleLogout = () => {
         logout();
@@ -95,7 +98,7 @@ export default function Layout() {
                 <div className="uidai-nav-bar">
                     <div className="uidai-nav-bar__container">
                         <nav className="uidai-nav-menus">
-                            {filteredNavLinks.map((link) => {
+                            {currentNavLinks.map((link) => {
                                 const Icon = link.icon;
                                 const isActive = location.pathname === link.path;
                                 return (

@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { BarChart3, Users, AlertTriangle, Clock, Monitor, CheckCircle, Loader, TrendingUp, Activity } from 'lucide-react';
 
 const mockComplaints = [
@@ -20,7 +20,13 @@ const hourlyData = [
 
 export default function AdminDashboard() {
     const { t } = useTranslation();
-    const [activeTab, setActiveTab] = useState('overview');
+    const location = useLocation();
+
+    // Determine active tab from URL path
+    let activeTab = 'overview';
+    if (location.pathname === '/admin/complaints') activeTab = 'complaints';
+    else if (location.pathname === '/admin/reports') activeTab = 'reports';
+    else if (location.pathname === '/admin/content') activeTab = 'content';
 
     const maxVal = Math.max(...hourlyData.map(d => d.value));
 
@@ -61,22 +67,7 @@ export default function AdminDashboard() {
                 </div>
             </div>
 
-            {/* Tabs */}
-            <div className="admin-tabs">
-                {['overview', 'complaints', 'reports', 'content'].map((tab) => (
-                    <button
-                        key={tab}
-                        className={`admin-tab ${activeTab === tab ? 'active' : ''}`}
-                        onClick={() => setActiveTab(tab)}
-                        style={{ textTransform: 'capitalize' }}
-                    >
-                        {tab === 'overview' ? t('admin_overview') :
-                            tab === 'complaints' ? t('admin_complaints') :
-                                tab === 'reports' ? t('admin_reports') :
-                                    t('admin_content')}
-                    </button>
-                ))}
-            </div>
+            {/* Tabs are now handled by the main Layout Navbar */}
 
             {/* Tab Content */}
             {activeTab === 'overview' && (
