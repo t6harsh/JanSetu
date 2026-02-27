@@ -171,15 +171,19 @@ export default function AuthScreen() {
                         <div className="auth-role-toggle">
                             <button
                                 className={`auth-role-toggle__btn ${loginRole === 'citizen' ? 'active' : ''}`}
-                                onClick={() => setLoginRole('citizen')}
+                                onClick={() => step === 1 && setLoginRole('citizen')}
                                 type="button"
+                                disabled={step > 1}
+                                style={{ opacity: step > 1 ? 0.6 : 1, cursor: step > 1 ? 'not-allowed' : 'pointer' }}
                             >
                                 <User size={16} /> Citizen Login
                             </button>
                             <button
                                 className={`auth-role-toggle__btn ${loginRole === 'admin' ? 'active' : ''}`}
-                                onClick={() => setLoginRole('admin')}
+                                onClick={() => step === 1 && setLoginRole('admin')}
                                 type="button"
+                                disabled={step > 1}
+                                style={{ opacity: step > 1 ? 0.6 : 1, cursor: step > 1 ? 'not-allowed' : 'pointer' }}
                             >
                                 <Shield size={16} /> Admin Login
                             </button>
