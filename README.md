@@ -2,7 +2,7 @@
 
 ![JanSetu Kiosk Interface](frontend/public/vite.svg)<!-- Replace with actual project screenshot if available -->
 
-**JanSetu SUVIDHA** (मेरा सुविधा • मेरी पहचान) is a comprehensive, touch-optimized public kiosk interface designed to bridge the digital divide and provide citizens with seamless access to essential government and civic services. 
+**JanSetu SUVIDHA** (सुगम सेवा • सुदृढ़ समाज) is a comprehensive, touch-optimized public kiosk interface designed to bridge the digital divide and provide citizens with seamless access to essential government and civic services.
 
 Inspired by the clean, accessible, and highly trusted UIDAI design language, JanSetu offers a premium, localized, and highly secure user experience tailored for physical kiosk deployments.
 

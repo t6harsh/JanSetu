@@ -61,15 +61,29 @@ export default function IdleScreen() {
                 {/* Logo */}
                 <div className="idle-hero__logo">
                     <svg viewBox="0 0 100 80" width="90" height="65">
-                        <path d="M50 15 A 35 35 0 0 1 85 50 L 15 50 A 35 35 0 0 1 50 15 Z" fill="#FDE047" />
-                        <line x1="50" y1="15" x2="50" y2="5" stroke="#FDE047" strokeWidth="3" />
-                        <line x1="25" y1="25" x2="18" y2="18" stroke="#FDE047" strokeWidth="3" />
-                        <line x1="75" y1="25" x2="82" y2="18" stroke="#FDE047" strokeWidth="3" />
-                        <line x1="15" y1="40" x2="5" y2="40" stroke="#FDE047" strokeWidth="3" />
-                        <line x1="85" y1="40" x2="95" y2="40" stroke="#FDE047" strokeWidth="3" />
-                        <path d="M25 50 Q 50 5 75 50" fill="none" stroke="#DC2626" strokeWidth="5.5" strokeLinecap="round" />
-                        <path d="M35 50 Q 50 20 65 50" fill="none" stroke="#DC2626" strokeWidth="5.5" strokeLinecap="round" />
-                        <path d="M45 50 Q 50 35 55 50" fill="none" stroke="#DC2626" strokeWidth="5.5" strokeLinecap="round" />
+                        <defs>
+                            <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#0284c7" />
+                                <stop offset="100%" stopColor="#2563eb" />
+                            </linearGradient>
+                            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#f59e0b" />
+                                <stop offset="100%" stopColor="#ea580c" />
+                            </linearGradient>
+                        </defs>
+                        {/* Connections */}
+                        <path d="M 25 25 Q 50 10 75 25" fill="none" stroke="url(#lineGrad)" strokeWidth="4" strokeLinecap="round" strokeDasharray="4 4" />
+                        <path d="M 25 55 Q 50 70 75 55" fill="none" stroke="url(#lineGrad)" strokeWidth="4" strokeLinecap="round" strokeDasharray="4 4" />
+                        <line x1="25" y1="25" x2="25" y2="55" stroke="url(#nodeGrad)" strokeWidth="3" opacity="0.5" />
+                        <line x1="75" y1="25" x2="75" y2="55" stroke="url(#nodeGrad)" strokeWidth="3" opacity="0.5" />
+                        <line x1="50" y1="15" x2="50" y2="65" stroke="#10b981" strokeWidth="3" opacity="0.5" />
+
+                        {/* Nodes */}
+                        <circle cx="25" cy="25" r="8" fill="url(#nodeGrad)" />
+                        <circle cx="75" cy="25" r="8" fill="url(#nodeGrad)" />
+                        <circle cx="25" cy="55" r="8" fill="url(#nodeGrad)" />
+                        <circle cx="75" cy="55" r="8" fill="url(#nodeGrad)" />
+                        <circle cx="50" cy="40" r="10" fill="#10b981" stroke="#fff" strokeWidth="2" />
                     </svg>
                 </div>
 
@@ -78,7 +92,7 @@ export default function IdleScreen() {
                     <span className="idle-hero__title-suvidha">SUVIDHA</span>
                 </h1>
                 <p className="idle-hero__tagline">
-                    मेरा सुविधा • मेरी पहचान
+                    सुगम सेवा • सुदृढ़ समाज
                 </p>
                 <p className="idle-hero__subtitle">
                     {t('kiosk_subtitle')} | C-DAC | Smart City Mission
