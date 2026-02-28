@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { FileText, Download, Printer, Eye, Clock } from 'lucide-react';
 
 const mockDocuments = [
-    { id: 'RCT-2026-001', name: 'Electricity Bill Receipt', type: 'Receipt', date: '18 Feb 2026', amount: '₹2,340', format: 'PDF' },
-    { id: 'RCT-2026-002', name: 'Water Bill Receipt', type: 'Receipt', date: '01 Feb 2026', amount: '₹450', format: 'PDF' },
-    { id: 'CERT-2026-001', name: 'Property Tax Clearance Certificate', type: 'Certificate', date: '15 Jan 2026', amount: '—', format: 'PDF' },
-    { id: 'GRV-ACK-001', name: 'Grievance Acknowledgment', type: 'Acknowledgment', date: '22 Feb 2026', amount: '—', format: 'PDF' },
-    { id: 'RCT-2025-014', name: 'Gas Bill Receipt', type: 'Receipt', date: '20 Dec 2025', amount: '₹890', format: 'PDF' },
-    { id: 'STMT-2026-001', name: 'Annual Consumption Summary', type: 'Statement', date: '01 Jan 2026', amount: '—', format: 'PDF' },
+    { id: 'RCT-2026-001', nameKey: 'Electricity Bill Receipt', type: 'Receipt', date: '18 Feb 2026', amount: '₹2,340', format: 'PDF' },
+    { id: 'RCT-2026-002', nameKey: 'Water Bill Receipt', type: 'Receipt', date: '01 Feb 2026', amount: '₹450', format: 'PDF' },
+    { id: 'CERT-2026-001', nameKey: 'Property Tax Clearance Certificate', type: 'Certificate', date: '15 Jan 2026', amount: '—', format: 'PDF' },
+    { id: 'GRV-ACK-001', nameKey: 'Grievance Acknowledgment', type: 'Acknowledgment', date: '22 Feb 2026', amount: '—', format: 'PDF' },
+    { id: 'RCT-2025-014', nameKey: 'Gas Bill Receipt', type: 'Receipt', date: '20 Dec 2025', amount: '₹890', format: 'PDF' },
+    { id: 'STMT-2026-001', nameKey: 'Annual Consumption Summary', type: 'Statement', date: '01 Jan 2026', amount: '—', format: 'PDF' },
 ];
 
 const typeColors = {
@@ -36,11 +36,11 @@ export default function MyDocuments() {
                 <table className="complaints-table" style={{ minWidth: '100%' }}>
                     <thead>
                         <tr>
-                            <th>Document</th>
-                            <th>Type</th>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th style={{ textAlign: 'right' }}>Actions</th>
+                            <th>{t('document')}</th>
+                            <th>{t('type')}</th>
+                            <th>{t('date')}</th>
+                            <th>{t('amount')}</th>
+                            <th style={{ textAlign: 'right' }}>{t('actions')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@ export default function MyDocuments() {
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                             <FileText size={18} color="var(--corporate-blue)" />
                                             <div>
-                                                <div style={{ fontWeight: 600, fontSize: '0.9rem' }}>{doc.name}</div>
+                                                <div style={{ fontWeight: 600, fontSize: '0.9rem' }}>{doc.nameKey}</div>
                                                 <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{doc.id}</div>
                                             </div>
                                         </div>
@@ -70,7 +70,7 @@ export default function MyDocuments() {
                                     <td style={{ textAlign: 'right' }}>
                                         <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
                                             <button className="btn btn-secondary" style={{ padding: '0.4rem 0.75rem', fontSize: '0.8rem' }}>
-                                                <Eye size={14} /> View
+                                                <Eye size={14} /> {t('view')}
                                             </button>
                                             <button className="btn btn-primary" style={{ padding: '0.4rem 0.75rem', fontSize: '0.8rem' }}>
                                                 <Download size={14} />

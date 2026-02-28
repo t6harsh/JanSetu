@@ -1,6 +1,7 @@
 import { useState, createContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ScreenReaderProvider from './components/ScreenReaderProvider';
 import Layout from './components/Layout';
 import IdleScreen from './pages/IdleScreen';
 import LanguageSelect from './pages/LanguageSelect';
@@ -48,44 +49,46 @@ function App() {
       changeLanguage, currentLang: i18n.language,
       isAuthenticated, login, logout, citizenName, userRole
     }}>
-      <div className="app-layout" data-font-scale={fontScale}>
-        <Routes>
-          <Route path="/" element={<IdleScreen />} />
-          <Route path="/language" element={<LanguageSelect />} />
-          <Route path="/auth" element={<AuthScreen />} />
-          <Route element={<Layout />}>
-            <Route path="/dashboard" element={
-              isAuthenticated
-                ? (userRole === 'admin' ? <AdminDashboard /> : <CitizenDashboard />)
-                : <Navigate to="/auth" />
-            } />
-            <Route path="/bill-payment" element={
-              isAuthenticated ? <BillPayment /> : <Navigate to="/auth" />
-            } />
-            <Route path="/grievance" element={
-              isAuthenticated ? <GrievanceForm /> : <Navigate to="/auth" />
-            } />
-            <Route path="/track-status" element={
-              isAuthenticated ? <TrackStatus /> : <Navigate to="/auth" />
-            } />
-            <Route path="/documents" element={
-              isAuthenticated ? <MyDocuments /> : <Navigate to="/auth" />
-            } />
-            <Route path="/admin" element={
-              isAuthenticated && userRole === 'admin' ? <Navigate to="/dashboard" /> : <Navigate to="/dashboard" />
-            } />
-            <Route path="/admin/complaints" element={
-              isAuthenticated && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/dashboard" />
-            } />
-            <Route path="/admin/reports" element={
-              isAuthenticated && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/dashboard" />
-            } />
-            <Route path="/admin/content" element={
-              isAuthenticated && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/dashboard" />
-            } />
-          </Route>
-        </Routes>
-      </div>
+      <ScreenReaderProvider>
+        <div className="app-layout" data-font-scale={fontScale}>
+          <Routes>
+            <Route path="/" element={<IdleScreen />} />
+            <Route path="/language" element={<LanguageSelect />} />
+            <Route path="/auth" element={<AuthScreen />} />
+            <Route element={<Layout />}>
+              <Route path="/dashboard" element={
+                isAuthenticated
+                  ? (userRole === 'admin' ? <AdminDashboard /> : <CitizenDashboard />)
+                  : <Navigate to="/auth" />
+              } />
+              <Route path="/bill-payment" element={
+                isAuthenticated ? <BillPayment /> : <Navigate to="/auth" />
+              } />
+              <Route path="/grievance" element={
+                isAuthenticated ? <GrievanceForm /> : <Navigate to="/auth" />
+              } />
+              <Route path="/track-status" element={
+                isAuthenticated ? <TrackStatus /> : <Navigate to="/auth" />
+              } />
+              <Route path="/documents" element={
+                isAuthenticated ? <MyDocuments /> : <Navigate to="/auth" />
+              } />
+              <Route path="/admin" element={
+                isAuthenticated && userRole === 'admin' ? <Navigate to="/dashboard" /> : <Navigate to="/dashboard" />
+              } />
+              <Route path="/admin/complaints" element={
+                isAuthenticated && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/dashboard" />
+              } />
+              <Route path="/admin/reports" element={
+                isAuthenticated && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/dashboard" />
+              } />
+              <Route path="/admin/content" element={
+                isAuthenticated && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/dashboard" />
+              } />
+            </Route>
+          </Routes>
+        </div>
+      </ScreenReaderProvider>
     </AppContext.Provider>
   );
 }

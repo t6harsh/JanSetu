@@ -5,11 +5,11 @@ import { ArrowLeft, ArrowRight, CreditCard, CheckCircle, Printer, Download, Home
 import VirtualKeyboard from '../components/VirtualKeyboard';
 
 const serviceIcons = {
-    electricity: { icon: Zap, color: '#FF9933', label: 'Electricity' },
-    gas: { icon: Flame, color: '#E53E3E', label: 'Gas Distribution' },
-    water: { icon: Droplets, color: '#0B5394', label: 'Water Supply' },
-    waste: { icon: Trash2, color: '#38A169', label: 'Waste Management' },
-    property: { icon: Landmark, color: '#805AD5', label: 'Property Tax' },
+    electricity: { icon: Zap, color: '#FF9933', labelKey: 'service_electricity' },
+    gas: { icon: Flame, color: '#E53E3E', labelKey: 'service_gas' },
+    water: { icon: Droplets, color: '#0B5394', labelKey: 'service_water' },
+    waste: { icon: Trash2, color: '#38A169', labelKey: 'service_waste' },
+    property: { icon: Landmark, color: '#805AD5', labelKey: 'service_property' },
 };
 
 const mockBills = {
@@ -19,6 +19,8 @@ const mockBills = {
     waste: { name: 'Rajesh Kumar', id: 'WST-019283', period: 'Jan 2026 - Feb 2026', amount: '₹200', due: '28 Feb 2026', units: 'Residential', rate: 'Flat Rate' },
     property: { name: 'Rajesh Kumar', id: 'PROP-583921', period: 'FY 2025-2026', amount: '₹8,500', due: '31 Mar 2026', units: '1200 sq.ft', rate: '₹7.08/sq.ft' },
 };
+
+const paymentMethodKeys = ['payment_upi', 'payment_debit', 'payment_netbanking', 'payment_cash'];
 
 export default function BillPayment() {
     const { t } = useTranslation();
@@ -38,8 +40,8 @@ export default function BillPayment() {
     const steps = [
         { label: t('select_service') },
         { label: t('bill_details') },
-        { label: 'Payment' },
-        { label: 'Receipt' },
+        { label: t('payment') },
+        { label: t('receipt') },
     ];
 
     const handleFetchBill = () => {
@@ -75,7 +77,7 @@ export default function BillPayment() {
             <div className="breadcrumb">
                 <a onClick={() => navigate('/dashboard')} style={{ cursor: 'pointer' }}>{t('home')}</a>
                 <span className="breadcrumb__separator">›</span>
-                <span>{t('bill_payment')} — {serviceInfo.label}</span>
+                <span>{t('bill_payment')} — {t(serviceInfo.labelKey)}</span>
             </div>
 
             {/* Progress Tracker */}
@@ -100,7 +102,7 @@ export default function BillPayment() {
                         >
                             <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                                 <Icon size={16} color={serviceType === key ? info.color : undefined} />
-                                {info.label}
+                                {t(info.labelKey)}
                             </span>
                         </button>
                     );
@@ -112,7 +114,7 @@ export default function BillPayment() {
                 <div className="panel animate-fade-in" style={{ maxWidth: '600px', margin: '0 auto' }}>
                     <div className="panel__header">
                         <ServiceIcon size={24} color={serviceInfo.color} />
-                        <h2 className="panel__title">{serviceInfo.label} — {t('bill_payment')}</h2>
+                        <h2 className="panel__title">{t(serviceInfo.labelKey)} — {t('bill_payment')}</h2>
                     </div>
                     <div className="form-group">
                         <label htmlFor="consumer-id">{t('enter_consumer_id')}</label>
@@ -136,7 +138,7 @@ export default function BillPayment() {
                         />
                     </div>
                     <button className="btn btn-primary btn-block btn-lg" onClick={handleFetchBill} disabled={loading} style={{ marginTop: '0.75rem' }}>
-                        {loading ? 'Fetching Bill...' : <>{t('fetch_bill')} <ArrowRight size={18} /></>}
+                        {loading ? t('fetching_bill') : <>{t('fetch_bill')} <ArrowRight size={18} /></>}
                     </button>
                 </div>
             )}
@@ -151,10 +153,10 @@ export default function BillPayment() {
                     <table className="bill-table">
                         <tbody>
                             <tr><th>{t('consumer_name')}</th><td>{bill.name}</td></tr>
-                            <tr><th>Consumer ID</th><td>{bill.id}</td></tr>
+                            <tr><th>{t('consumer_id')}</th><td>{bill.id}</td></tr>
                             <tr><th>{t('bill_period')}</th><td>{bill.period}</td></tr>
-                            <tr><th>Consumption</th><td>{bill.units}</td></tr>
-                            <tr><th>Rate</th><td>{bill.rate}</td></tr>
+                            <tr><th>{t('consumption')}</th><td>{bill.units}</td></tr>
+                            <tr><th>{t('rate')}</th><td>{bill.rate}</td></tr>
                             <tr><th>{t('due_date')}</th><td>{bill.due}</td></tr>
                             <tr className="total-row"><td style={{ fontWeight: 700 }}>{t('bill_amount')}</td><td>{bill.amount}</td></tr>
                         </tbody>
@@ -175,17 +177,17 @@ export default function BillPayment() {
                 <div className="panel animate-fade-in" style={{ maxWidth: '600px', margin: '0 auto' }}>
                     <div className="panel__header">
                         <CreditCard size={24} color="var(--corporate-blue)" />
-                        <h2 className="panel__title">Select Payment Method</h2>
+                        <h2 className="panel__title">{t('select_payment_method')}</h2>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                        {['UPI / QR Code', 'Debit Card', 'Net Banking', 'Cash at Counter'].map((method) => (
+                        {paymentMethodKeys.map((methodKey) => (
                             <div
-                                key={method}
-                                className={`language-card ${paymentMethod === method ? 'selected' : ''}`}
-                                onClick={() => setPaymentMethod(method)}
+                                key={methodKey}
+                                className={`language-card ${paymentMethod === methodKey ? 'selected' : ''}`}
+                                onClick={() => setPaymentMethod(methodKey)}
                                 style={{ textAlign: 'left', padding: '1rem 1.25rem' }}
                             >
-                                <div className="language-card__native" style={{ fontSize: '1rem' }}>{method}</div>
+                                <div className="language-card__native" style={{ fontSize: '1rem' }}>{t(methodKey)}</div>
                             </div>
                         ))}
                     </div>
@@ -194,7 +196,7 @@ export default function BillPayment() {
                             <ArrowLeft size={16} /> {t('back')}
                         </button>
                         <button className="btn btn-success" style={{ flex: 1 }} onClick={handlePay} disabled={loading || !paymentMethod}>
-                            {loading ? 'Processing Payment...' : <>{t('confirm')} Payment — {bill.amount}</>}
+                            {loading ? t('processing_payment') : <>{t('confirm_payment')} — {bill.amount}</>}
                         </button>
                     </div>
                 </div>
@@ -211,10 +213,10 @@ export default function BillPayment() {
                         <p className="success-screen__detail">{t('receipt_generated')}</p>
                         <div style={{ background: 'var(--bg-secondary)', padding: '1rem', borderRadius: 'var(--border-radius-sm)', margin: '1rem 0', textAlign: 'left' }}>
                             <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}><strong>{t('transaction_id')}:</strong> TXN-{Date.now().toString().slice(-8)}</p>
-                            <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}><strong>Service:</strong> {serviceInfo.label}</p>
-                            <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}><strong>Consumer ID:</strong> {bill.id}</p>
+                            <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}><strong>{t('service_label')}:</strong> {t(serviceInfo.labelKey)}</p>
+                            <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}><strong>{t('consumer_id')}:</strong> {bill.id}</p>
                             <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}><strong>{t('bill_amount')}:</strong> {bill.amount}</p>
-                            <p style={{ fontSize: '0.9rem' }}><strong>Payment Mode:</strong> {paymentMethod}</p>
+                            <p style={{ fontSize: '0.9rem' }}><strong>{t('payment_mode')}:</strong> {paymentMethod ? t(paymentMethod) : ''}</p>
                         </div>
                         <div className="success-screen__actions">
                             <button className="btn btn-primary">

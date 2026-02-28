@@ -82,9 +82,9 @@ export default function LanguageSelect() {
             <div className="lang-page__center">
                 <div className="lang-page__title-row">
                     <Globe size={24} color="#B45309" />
-                    <h1 className="lang-page__title">{t('select_language')} / अपनी भाषा चुनें</h1>
+                    <h1 className="lang-page__title">{t('select_language')}</h1>
                 </div>
-                <p className="lang-page__subtitle">Choose your preferred language to continue</p>
+                <p className="lang-page__subtitle">{t('choose_language_subtitle')}</p>
 
                 {/* Language Grid — fits in single page */}
                 <div className="lang-grid">
@@ -113,7 +113,7 @@ export default function LanguageSelect() {
             {/* Continue Button — always visible at bottom */}
             <div className="lang-page__footer">
                 <button className="lang-continue-btn" onClick={handleContinue}>
-                    <span>Continue</span>
+                    <span>{t('continue')}</span>
                     <ArrowRight size={20} />
                 </button>
             </div>

@@ -115,7 +115,7 @@ export default function GrievanceForm() {
                     </div>
 
                     <div style={{ marginBottom: '0.5rem', padding: '0.5rem 0.75rem', background: 'var(--info-bg)', borderRadius: 'var(--border-radius-sm)', fontSize: '0.85rem', color: '#0c5460' }}>
-                        Category: <strong>{t(category)}</strong>
+                        {t('category_label')}: <strong>{t(category)}</strong>
                     </div>
 
                     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -127,7 +127,7 @@ export default function GrievanceForm() {
                                     value={description}
                                     readOnly
                                     rows={3}
-                                    placeholder="Describe your issue in detail..."
+                                    placeholder={t('describe_issue_placeholder')}
                                     style={{ resize: 'none', border: activeField === 'description' ? '2px solid #0B5394' : undefined }}
                                     onFocus={() => setActiveField('description')}
                                     inputMode="none"
@@ -143,7 +143,7 @@ export default function GrievanceForm() {
                                     type="text"
                                     value={location}
                                     readOnly
-                                    placeholder="Ward number or area name"
+                                    placeholder={t('ward_placeholder')}
                                     style={{ border: activeField === 'location' ? '2px solid #0B5394' : undefined }}
                                     onFocus={() => setActiveField('location')}
                                     inputMode="none"
@@ -153,7 +153,7 @@ export default function GrievanceForm() {
                                 <label>{t('attach_photo')}</label>
                                 <div style={{ border: '2px dashed var(--border-color)', borderRadius: 'var(--border-radius-sm)', padding: '1rem', textAlign: 'center', color: 'var(--text-muted)', cursor: 'pointer' }}>
                                     <Upload size={20} style={{ marginBottom: '0.25rem' }} />
-                                    <p style={{ fontSize: '0.82rem' }}>Tap to upload photo</p>
+                                    <p style={{ fontSize: '0.82rem' }}>{t('tap_upload_photo')}</p>
                                 </div>
                             </div>
                         </div>
@@ -166,14 +166,14 @@ export default function GrievanceForm() {
                                     onClick={() => setActiveField('description')}
                                     style={{ flex: 1, padding: '0.4rem 0.75rem', fontSize: '0.8rem' }}
                                 >
-                                    Description
+                                    {t('description_label')}
                                 </button>
                                 <button
                                     className={`btn ${activeField === 'location' ? 'btn-primary' : 'btn-secondary'}`}
                                     onClick={() => setActiveField('location')}
                                     style={{ flex: 1, padding: '0.4rem 0.75rem', fontSize: '0.8rem' }}
                                 >
-                                    Location
+                                    {t('location_label')}
                                 </button>
                             </div>
                             <VirtualKeyboard
@@ -195,7 +195,7 @@ export default function GrievanceForm() {
                             onClick={handleSubmit}
                             disabled={loading || !description.trim() || !location.trim()}
                         >
-                            {loading ? 'Submitting...' : <>{t('submit_grievance')}</>}
+                            {loading ? t('submitting') : <>{t('submit_grievance')}</>}
                         </button>
                     </div>
                 </div>
@@ -211,15 +211,15 @@ export default function GrievanceForm() {
                         <h2 className="success-screen__title">{t('grievance_success')}</h2>
                         <div style={{ background: 'var(--bg-secondary)', padding: '1.25rem', borderRadius: 'var(--border-radius-sm)', margin: '1rem 0', textAlign: 'left' }}>
                             <p style={{ fontSize: '0.95rem', marginBottom: '0.5rem' }}><strong>{t('grievance_id')}:</strong> <span style={{ color: 'var(--corporate-blue)', fontWeight: 700 }}>{grievanceId}</span></p>
-                            <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}><strong>Category:</strong> {t(category)}</p>
-                            <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}><strong>Location:</strong> {location}</p>
+                            <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}><strong>{t('category_label')}:</strong> {t(category)}</p>
+                            <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}><strong>{t('location_label')}:</strong> {location}</p>
                             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.75rem' }}>
                                 📋 {t('grievance_track')}
                             </p>
                         </div>
                         <div className="success-screen__actions">
                             <button className="btn btn-primary" onClick={() => navigate('/track-status')}>
-                                Track Status
+                                {t('track_status_btn')}
                             </button>
                             <button className="btn btn-secondary" onClick={() => navigate('/dashboard')}>
                                 <Home size={16} /> {t('go_home')}

@@ -7,7 +7,7 @@ import { Zap, Flame, Droplets, Trash2, Landmark, MessageSquareWarning, FileText,
 const services = [
     {
         key: 'electricity', icon: Zap, path: '/bill-payment', param: 'electricity',
-        stat: '15,234+', statLabel: 'Bills Processed',
+        stat: '15,234+', statLabelKey: 'stat_bills_processed',
         gradient: 'linear-gradient(135deg, #FFECD2 0%, #FCB69F 100%)',
         iconColor: '#FF9933', iconBg: 'rgba(255,153,51,0.15)',
         decoColor: '#FF9933',
@@ -15,7 +15,7 @@ const services = [
     },
     {
         key: 'gas', icon: Flame, path: '/bill-payment', param: 'gas',
-        stat: '8,412', statLabel: 'Connections Active',
+        stat: '8,412', statLabelKey: 'stat_connections_active',
         gradient: 'linear-gradient(135deg, #FFE6CC 0%, #FFDAB3 100%)',
         iconColor: '#E53E3E', iconBg: 'rgba(229,62,62,0.12)',
         decoColor: '#E53E3E',
@@ -23,7 +23,7 @@ const services = [
     },
     {
         key: 'water', icon: Droplets, path: '/bill-payment', param: 'water',
-        stat: '6k+', statLabel: 'Meters Monitored',
+        stat: '6k+', statLabelKey: 'stat_meters_monitored',
         gradient: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)',
         iconColor: '#0B5394', iconBg: 'rgba(11,83,148,0.12)',
         decoColor: '#0B5394',
@@ -31,7 +31,7 @@ const services = [
     },
     {
         key: 'waste', icon: Trash2, path: '/bill-payment', param: 'waste',
-        stat: '1.51 Cr', statLabel: 'Waste Collected (kg)',
+        stat: '1.51 Cr', statLabelKey: 'stat_waste_collected',
         gradient: 'linear-gradient(135deg, #D5F5E3 0%, #A7F3D0 100%)',
         iconColor: '#38A169', iconBg: 'rgba(56,161,105,0.12)',
         decoColor: '#38A169',
@@ -39,7 +39,7 @@ const services = [
     },
     {
         key: 'property', icon: Landmark, path: '/bill-payment', param: 'property',
-        stat: '₹48.2L', statLabel: 'Tax Revenue',
+        stat: '₹48.2L', statLabelKey: 'stat_tax_revenue',
         gradient: 'linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)',
         iconColor: '#805AD5', iconBg: 'rgba(128,90,213,0.12)',
         decoColor: '#805AD5',
@@ -47,7 +47,7 @@ const services = [
     },
     {
         key: 'grievance', icon: MessageSquareWarning, path: '/grievance',
-        stat: '892', statLabel: 'Resolved This Month',
+        stat: '892', statLabelKey: 'stat_resolved_month',
         gradient: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)',
         iconColor: '#D69E2E', iconBg: 'rgba(214,158,46,0.12)',
         decoColor: '#D69E2E',
@@ -55,7 +55,7 @@ const services = [
     },
     {
         key: 'documents', icon: FileText, path: '/documents',
-        stat: '52+', statLabel: 'Certificate Types',
+        stat: '52+', statLabelKey: 'stat_certificate_types',
         gradient: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)',
         iconColor: '#EC4899', iconBg: 'rgba(236,72,153,0.12)',
         decoColor: '#EC4899',
@@ -63,7 +63,7 @@ const services = [
     },
     {
         key: 'status', icon: Search, path: '/track-status',
-        stat: '184.6M', statLabel: 'Requests Tracked',
+        stat: '184.6M', statLabelKey: 'stat_requests_tracked',
         gradient: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)',
         iconColor: '#059669', iconBg: 'rgba(5,150,105,0.12)',
         decoColor: '#059669',
@@ -90,10 +90,10 @@ export default function CitizenDashboard() {
             <div className="welcome-hero">
                 <div className="welcome-hero__content">
                     <div className="welcome-hero__greeting">
-                        Namaste, <span className="welcome-hero__name">{citizenName}</span> 🙏
+                        {t('namaste_greeting')} <span className="welcome-hero__name">{citizenName}</span> 🙏
                     </div>
                     <div className="welcome-hero__subtitle">
-                        Access all civic services from one place — pay bills, file grievances, track requests & more
+                        {t('dashboard_subtitle')}
                     </div>
                 </div>
                 <div className="welcome-hero__deco">
@@ -109,9 +109,9 @@ export default function CitizenDashboard() {
             {/* Section Title */}
             <div className="section-title-row">
                 <h2>
-                    <span className="section-title-accent">Services</span>
+                    <span className="section-title-accent">{t('services_title')}</span>
                 </h2>
-                <span className="section-title-count">{services.length} services available</span>
+                <span className="section-title-count">{services.length} {t('services_available')}</span>
             </div>
 
             {/* Bento Grid — Mixed Sizes */}
@@ -144,7 +144,7 @@ export default function CitizenDashboard() {
                                 {service.stat}
                             </div>
                             <div className="bento-card__stat-label">
-                                {service.statLabel}
+                                {t(service.statLabelKey)}
                             </div>
 
                             {/* CTA Arrow */}

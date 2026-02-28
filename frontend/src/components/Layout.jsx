@@ -2,21 +2,22 @@ import { useContext } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../App';
-import { LogOut, Monitor, Type, Volume2, ChevronDown, LayoutDashboard, CreditCard, MessageSquareWarning, Search, FileText, Settings, BarChart3, AlertCircle } from 'lucide-react';
+import { useScreenReader } from './ScreenReaderProvider';
+import { LogOut, Monitor, Type, Volume2, VolumeX, ChevronDown, LayoutDashboard, CreditCard, MessageSquareWarning, Search, FileText, Settings, BarChart3, AlertCircle, BookOpen, Square, X } from 'lucide-react';
 
 const citizenNavLinks = [
-    { label: 'Services', path: '/dashboard', icon: LayoutDashboard },
-    { label: 'Pay Bills', path: '/bill-payment', icon: CreditCard },
-    { label: 'Grievance', path: '/grievance', icon: MessageSquareWarning },
-    { label: 'Track Status', path: '/track-status', icon: Search },
-    { label: 'Documents', path: '/documents', icon: FileText },
+    { labelKey: 'nav_services', path: '/dashboard', icon: LayoutDashboard },
+    { labelKey: 'nav_pay_bills', path: '/bill-payment', icon: CreditCard },
+    { labelKey: 'nav_grievance', path: '/grievance', icon: MessageSquareWarning },
+    { labelKey: 'nav_track_status', path: '/track-status', icon: Search },
+    { labelKey: 'nav_documents', path: '/documents', icon: FileText },
 ];
 
 const adminNavLinks = [
-    { label: 'Overview', path: '/dashboard', icon: LayoutDashboard },
-    { label: 'Manage Complaints', path: '/admin/complaints', icon: AlertCircle },
-    { label: 'Reports & Analytics', path: '/admin/reports', icon: BarChart3 },
-    { label: 'Content Management', path: '/admin/content', icon: Settings },
+    { labelKey: 'nav_overview', path: '/dashboard', icon: LayoutDashboard },
+    { labelKey: 'nav_manage_complaints', path: '/admin/complaints', icon: AlertCircle },
+    { labelKey: 'nav_reports_analytics', path: '/admin/reports', icon: BarChart3 },
+    { labelKey: 'nav_content_management', path: '/admin/content', icon: Settings },
 ];
 
 export default function Layout() {
@@ -26,6 +27,7 @@ export default function Layout() {
     const { fontScale, changeFontScale, currentLang, changeLanguage, isAuthenticated, logout, userRole } = useContext(AppContext);
 
     const currentNavLinks = userRole === 'admin' ? adminNavLinks : citizenNavLinks;
+    const { enabled: srEnabled, speaking, toggle: toggleSR, readPage, stop: stopSR } = useScreenReader();
 
     const handleLogout = () => {
         logout();
@@ -40,7 +42,7 @@ export default function Layout() {
                 <div className="uidai-top-bar">
                     <div className="uidai-top-bar__container">
                         <a href="#main-content" className="uidai-top-action">
-                            <Monitor size={14} style={{ marginRight: '6px' }} /> Main Content
+                            <Monitor size={14} style={{ marginRight: '6px' }} /> {t('main_content')}
                         </a>
                         <div className="uidai-top-divider"></div>
                         <div className="uidai-top-action">
@@ -52,8 +54,9 @@ export default function Layout() {
                             </div>
                         </div>
                         <div className="uidai-top-divider"></div>
-                        <button className="uidai-top-action">
-                            <Volume2 size={14} style={{ marginRight: '6px' }} /> Screen Reader
+                        <button className={`uidai-top-action ${srEnabled ? 'sr-active-btn' : ''}`} onClick={toggleSR}>
+                            {srEnabled ? <VolumeX size={14} style={{ marginRight: '6px' }} /> : <Volume2 size={14} style={{ marginRight: '6px' }} />}
+                            {t('screen_reader')} {srEnabled ? '●' : ''}
                         </button>
                         <div className="uidai-top-divider"></div>
                         <button className="uidai-top-action lang-dropdown" onClick={() => changeLanguage(currentLang === 'en' ? 'hi' : 'en')}>
@@ -103,8 +106,8 @@ export default function Layout() {
                             </div>
                         </div>
                         <div className="uidai-authority-text">
-                            <strong>Unified Civic Services</strong><br />
-                            Authority of India
+                            <strong>{t('unified_civic_services')}</strong><br />
+                            {t('authority_of_india')}
                         </div>
                     </div>
                 </div>
@@ -123,13 +126,13 @@ export default function Layout() {
                                         onClick={() => navigate(link.path)}
                                     >
                                         <Icon size={15} style={{ marginRight: '6px' }} />
-                                        {link.label}
+                                        {t(link.labelKey)}
                                     </div>
                                 );
                             })}
                             {isAuthenticated && (
                                 <div className="uidai-nav-item header-logout" onClick={handleLogout}>
-                                    <LogOut size={14} style={{ marginRight: '6px' }} /> Logout
+                                    <LogOut size={14} style={{ marginRight: '6px' }} /> {t('logout')}
                                 </div>
                             )}
                         </nav>
@@ -150,6 +153,31 @@ export default function Layout() {
                     <a href="#">{t('emergency')}</a>
                 </div>
             </footer>
+
+            {/* Screen Reader Floating Control Bar */}
+            {srEnabled && (
+                <div className="sr-control-bar">
+                    <div className="sr-control-bar__indicator">
+                        <Volume2 size={16} className={speaking ? 'sr-pulse' : ''} />
+                        <span>{t('screen_reader')}</span>
+                    </div>
+                    <div className="sr-control-bar__actions">
+                        <button className="sr-control-btn" onClick={readPage} title={currentLang === 'hi' ? 'पूरा पेज पढ़ें' : 'Read Full Page'}>
+                            <BookOpen size={16} />
+                            <span>{currentLang === 'hi' ? 'पेज पढ़ें' : 'Read Page'}</span>
+                        </button>
+                        {speaking && (
+                            <button className="sr-control-btn sr-control-btn--stop" onClick={stopSR} title={currentLang === 'hi' ? 'रोकें' : 'Stop'}>
+                                <Square size={14} />
+                                <span>{currentLang === 'hi' ? 'रोकें' : 'Stop'}</span>
+                            </button>
+                        )}
+                        <button className="sr-control-btn sr-control-btn--close" onClick={toggleSR} title={currentLang === 'hi' ? 'बंद करें' : 'Close'}>
+                            <X size={16} />
+                        </button>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

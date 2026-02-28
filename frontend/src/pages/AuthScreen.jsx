@@ -149,21 +149,21 @@ export default function AuthScreen() {
                         <h2 className="auth-brand-panel__title">
                             <span style={{ color: '#6CB4EE' }}>Jan</span><span style={{ color: '#00B4D8' }}>Setu</span> <span style={{ color: '#fff' }}>SUVIDHA</span>
                         </h2>
-                        <p className="auth-brand-panel__tagline">Unified Civic Services Portal</p>
+                        <p className="auth-brand-panel__tagline">{t('unified_portal')}</p>
                         <p className="auth-brand-panel__hindi">सुगम सेवा • सुदृढ़ समाज</p>
 
                         <div className="auth-brand-panel__features">
                             <div className="auth-feature">
                                 <Fingerprint size={18} />
-                                <span>Aadhaar Verified</span>
+                                <span>{t('aadhaar_verified')}</span>
                             </div>
                             <div className="auth-feature">
                                 <Lock size={18} />
-                                <span>256-bit Encrypted</span>
+                                <span>{t('encrypted_256')}</span>
                             </div>
                             <div className="auth-feature">
                                 <KeyRound size={18} />
-                                <span>OTP Based Login</span>
+                                <span>{t('otp_based_login')}</span>
                             </div>
                         </div>
                     </div>
@@ -190,7 +190,7 @@ export default function AuthScreen() {
                                 disabled={step > 1}
                                 style={{ opacity: step > 1 ? 0.6 : 1, cursor: step > 1 ? 'not-allowed' : 'pointer' }}
                             >
-                                <User size={16} /> Citizen Login
+                                <User size={16} /> {t('citizen_login')}
                             </button>
                             <button
                                 className={`auth-role-toggle__btn ${loginRole === 'admin' ? 'active' : ''}`}
@@ -199,7 +199,7 @@ export default function AuthScreen() {
                                 disabled={step > 1}
                                 style={{ opacity: step > 1 ? 0.6 : 1, cursor: step > 1 ? 'not-allowed' : 'pointer' }}
                             >
-                                <Shield size={16} /> Admin Login
+                                <Shield size={16} /> {t('admin_login')}
                             </button>
                         </div>
 
@@ -257,7 +257,7 @@ export default function AuthScreen() {
                                     {loading ? (
                                         <span className="auth-btn__loading">
                                             <span className="auth-spinner"></span>
-                                            Sending OTP...
+                                            {t('sending_otp')}
                                         </span>
                                     ) : (
                                         <>{t('send_otp')} <ArrowRight size={18} /></>
@@ -307,7 +307,7 @@ export default function AuthScreen() {
                                     {loading ? (
                                         <span className="auth-btn__loading">
                                             <span className="auth-spinner"></span>
-                                            Verifying...
+                                            {t('verifying')}
                                         </span>
                                     ) : (
                                         <>{t('verify_otp')} <ShieldCheck size={18} /></>
@@ -323,7 +323,7 @@ export default function AuthScreen() {
                         )}
 
                         <div className="auth-form-card__footer">
-                            <Lock size={12} /> Your data is protected under the Aadhaar Act, 2016
+                            <Lock size={12} /> {t('data_protected')}
                         </div>
                     </div>
                 </div>
