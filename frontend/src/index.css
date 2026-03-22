@@ -80,6 +80,994 @@
 }
 
 /* ================================
+   HIGH CONTRAST MODE (Accessibility)
+   Premium Dark Navy Theme
+   ================================ */
+[data-high-contrast="on"] {
+  /* Black, White, Yellow — Classic High Contrast */
+  --bg-primary: #000000;
+  --bg-secondary: #000000;
+  --bg-card: #000000;
+  --bg-dark: #000000;
+
+  --text-primary: #FFFFFF;
+  --text-secondary: #FFFFFF;
+  --text-muted: #FFFFFF;
+  --text-on-dark: #FFFFFF;
+  --text-on-brand: #000000;
+
+  --border-color: #FFFF00;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+
+  --corporate-blue: #FFFF00;
+  --corporate-blue-light: #FFFF00;
+  --cyan-aadhaar: #FFFF00;
+  --cyan-aadhaar-light: #FFFF00;
+
+  --saffron: #FFFF00;
+  --green: #FFFF00;
+
+  --success: #FFFF00;
+  --success-bg: #000000;
+  --warning: #FFFF00;
+  --warning-bg: #000000;
+  --danger: #FFFF00;
+  --danger-bg: #000000;
+  --info: #FFFF00;
+  --info-bg: #000000;
+
+  --font-scale: 1.4;
+}
+
+/* Body */
+[data-high-contrast="on"] body {
+  background: #000000;
+}
+
+/* Header overrides */
+[data-high-contrast="on"] .uidai-header {
+  background: #000000;
+  box-shadow: none;
+}
+
+[data-high-contrast="on"] .uidai-logo-bar {
+  background: #000000;
+  border-bottom: 1px solid #FFFF00;
+}
+
+[data-high-contrast="on"] .uidai-logo__hi {
+  color: #FFFF00;
+}
+
+[data-high-contrast="on"] .uidai-logo__en {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .uidai-authority-text {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .uidai-authority-text strong {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .uidai-nav-bar {
+  background: #000000;
+  border-bottom: 2px solid #FFFF00;
+}
+
+[data-high-contrast="on"] .uidai-nav-item {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+[data-high-contrast="on"] .uidai-nav-item:hover,
+[data-high-contrast="on"] .uidai-nav-item.active {
+  background: #FFFF00;
+  border-bottom-color: #FFFF00;
+  color: #000000 !important;
+}
+
+[data-high-contrast="on"] .uidai-nav-item.header-logout {
+  color: #FFFF00;
+}
+
+[data-high-contrast="on"] .uidai-nav-item.header-logout:hover {
+  background: #FFFF00;
+  border-bottom-color: #FFFF00;
+  color: #000000 !important;
+}
+
+/* Cards */
+[data-high-contrast="on"] .service-card {
+  background: #000000;
+  border: 1.5px solid #FFFF00;
+}
+
+[data-high-contrast="on"] .service-card:hover {
+  border-color: #FFFF00;
+  box-shadow: 0 0 0 2px #FFFF00;
+  transform: translateY(-4px);
+}
+
+[data-high-contrast="on"] .service-card::before {
+  background: #FFFF00;
+}
+
+[data-high-contrast="on"] .service-card__title {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .service-card__desc {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .service-card__arrow {
+  color: #FFFF00;
+}
+
+[data-high-contrast="on"] .metric-card {
+  background: #000000;
+  border: 1.5px solid #FFFF00;
+}
+
+[data-high-contrast="on"] .metric-card__value {
+  background: #FFFF00;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Idle Screen */
+[data-high-contrast="on"] .idle-screen {
+  background: #000000;
+}
+
+[data-high-contrast="on"] .idle-hero__title-jan {
+  color: #FFFF00;
+}
+
+[data-high-contrast="on"] .idle-hero__title-setu {
+  color: #FFFF00;
+}
+
+[data-high-contrast="on"] .idle-hero__title-suvidha {
+  color: #FFFF00;
+}
+
+[data-high-contrast="on"] .idle-hero__tagline {
+  color: #FFFF00;
+}
+
+[data-high-contrast="on"] .idle-hero__subtitle {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .idle-metric-card {
+  background: #000000;
+  border: 1.5px solid #FFFF00;
+  backdrop-filter: blur(12px);
+}
+
+[data-high-contrast="on"] .idle-metric-card__value {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .idle-metric-card__label {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .idle-status-strip {
+  background: #000000;
+  border: 1px solid #FFFF00;
+  color: #FFFFFF;
+  backdrop-filter: blur(8px);
+}
+
+[data-high-contrast="on"] .idle-cta-btn {
+  background: #FFFF00;
+  color: #000000;
+  box-shadow: 0 6px 24px #FFFF00;
+  font-weight: 800;
+}
+
+[data-high-contrast="on"] .idle-cta-btn:hover {
+  box-shadow: 0 8px 32px #FFFF00;
+}
+
+[data-high-contrast="on"] .idle-footer {
+  background: #000000;
+  border-top: 1px solid #FFFF00;
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .idle-bg-deco__circle {
+  border-color: #FFFF00;
+}
+
+/* Quick Service Cards */
+[data-high-contrast="on"] .quick-service-card {
+  background: #000000 !important;
+  border: 1.5px solid #FFFF00 !important;
+  box-shadow: none !important;
+}
+
+[data-high-contrast="on"] .quick-service-card:hover {
+  border-color: #FFFF00 !important;
+  box-shadow: 0 6px 24px #FFFF00 !important;
+}
+
+[data-high-contrast="on"] .quick-service-card div {
+  color: #FFFFFF !important;
+}
+
+/* Footer */
+[data-high-contrast="on"] .gov-footer {
+  background: #000000;
+  border-top: 1px solid #FFFF00;
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .gov-footer__links a {
+  color: #FFFF00;
+}
+
+[data-high-contrast="on"] .gov-footer__links a:hover {
+  color: #FFFF00;
+}
+
+/* Buttons */
+[data-high-contrast="on"] .btn-primary {
+  background: #FFFF00;
+  color: #000000;
+  box-shadow: 0 4px 14px #FFFF00;
+  border: none;
+  font-weight: 800;
+}
+
+[data-high-contrast="on"] .btn-primary:hover {
+  box-shadow: 0 6px 20px #FFFF00;
+  transform: translateY(-1px);
+}
+
+[data-high-contrast="on"] .btn-secondary {
+  color: #FFFF00;
+  border: 2px solid #FFFF00;
+  background: transparent;
+}
+
+[data-high-contrast="on"] .btn-secondary:hover {
+  background: #FFFF00;
+}
+
+[data-high-contrast="on"] .btn-success {
+  background: #FFFFFF;
+  color: #000000;
+  font-weight: 800;
+  border: none;
+}
+
+/* Forms */
+[data-high-contrast="on"] input,
+[data-high-contrast="on"] select,
+[data-high-contrast="on"] textarea {
+  background: #000000;
+  color: #FFFFFF;
+  border: 1.5px solid #FFFF00;
+}
+
+[data-high-contrast="on"] input:focus,
+[data-high-contrast="on"] select:focus,
+[data-high-contrast="on"] textarea:focus {
+  border-color: #FFFF00;
+  box-shadow: 0 0 0 3px #FFFF00;
+}
+
+[data-high-contrast="on"] input::placeholder {
+  color: #FFFFFF;
+}
+
+/* Panels */
+[data-high-contrast="on"] .panel {
+  background: #000000;
+  border: 1.5px solid #FFFF00;
+}
+
+[data-high-contrast="on"] .panel__header {
+  border-bottom-color: #FFFF00;
+}
+
+/* Progress Tracker */
+[data-high-contrast="on"] .progress-step__circle {
+  background: #000000;
+  border: 2px solid #FFFF00;
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .progress-step.active .progress-step__circle {
+  background: #FFFF00;
+  border-color: #FFFF00;
+  color: #000000;
+  box-shadow: 0 0 0 4px #FFFF00;
+}
+
+[data-high-contrast="on"] .progress-step.completed .progress-step__circle {
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  color: #000000;
+}
+
+[data-high-contrast="on"] .progress-step__label {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .progress-step.active .progress-step__label {
+  color: #FFFF00;
+}
+
+/* Links */
+[data-high-contrast="on"] a {
+  color: #FFFF00;
+}
+
+[data-high-contrast="on"] a:hover {
+  color: #FFFFFF;
+}
+
+/* Language page */
+[data-high-contrast="on"] .lang-page {
+  background: #000000;
+}
+
+[data-high-contrast="on"] .lang-card {
+  background: #000000;
+  border: 1.5px solid #FFFF00;
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .lang-card--selected {
+  border-color: #FFFF00;
+  background: #FFFF00;
+  box-shadow: 0 0 0 3px #FFFF00;
+}
+
+[data-high-contrast="on"] .lang-card--selected .lang-card__native,
+[data-high-contrast="on"] .lang-card--selected .lang-card__english,
+[data-high-contrast="on"] .lang-card--selected .lang-card__text {
+  color: #000000 !important;
+}
+
+[data-high-contrast="on"] .lang-card:hover {
+  border-color: #FFFF00;
+  box-shadow: none;
+}
+
+[data-high-contrast="on"] .lang-card__native {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .lang-card__english {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .lang-card__check {
+  border-color: #FFFF00;
+}
+
+[data-high-contrast="on"] .lang-card--selected .lang-card__check {
+  background: #FFFF00;
+  border-color: #FFFF00;
+}
+
+[data-high-contrast="on"] .lang-page__title {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .lang-page__brand {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .lang-page__tagline {
+  color: #FFFF00;
+}
+
+[data-high-contrast="on"] .lang-continue-btn {
+  background: #FFFF00;
+  color: #000000;
+}
+
+/* Auth Screen */
+[data-high-contrast="on"] .auth-page {
+  background: #000000;
+}
+
+[data-high-contrast="on"] .auth-brand-panel {
+  background: #000000;
+}
+
+[data-high-contrast="on"] .auth-form-panel {
+  background: #000000;
+}
+
+[data-high-contrast="on"] .auth-form-card {
+  background: #000000;
+  border: 1.5px solid #FFFF00;
+}
+
+[data-high-contrast="on"] .auth-btn--primary {
+  background: #FFFF00 !important;
+  color: #000000 !important;
+  font-weight: 800;
+}
+
+[data-high-contrast="on"] .auth-btn--success {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  font-weight: 800;
+}
+
+[data-high-contrast="on"] .auth-role-toggle__btn {
+  background: #000000;
+  color: #FFFFFF;
+  border-color: #FFFF00;
+}
+
+[data-high-contrast="on"] .auth-role-toggle__btn.active {
+  background: #FFFF00;
+  color: #000000 !important;
+  border-color: #FFFF00;
+  font-weight: 900;
+}
+
+[data-high-contrast="on"] .auth-role-toggle__btn.active svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+[data-high-contrast="on"] .auth-otp-box {
+  background: #000000 !important;
+  color: #FFFF00 !important;
+  border: 2px solid #FFFF00 !important;
+  font-size: 1.8rem !important;
+  font-weight: 900 !important;
+  width: 52px !important;
+  height: 56px !important;
+}
+
+[data-high-contrast="on"] .auth-input {
+  background: #000000 !important;
+  color: #FFFF00 !important;
+  border: 2px solid #FFFF00 !important;
+  font-size: 1.2rem !important;
+}
+
+/* Auth form card header & title */
+[data-high-contrast="on"] .auth-form-card__header h1 {
+  color: #FFFF00 !important;
+}
+
+[data-high-contrast="on"] .auth-form-card__header svg {
+  color: #FFFF00 !important;
+  stroke: #FFFF00 !important;
+}
+
+[data-high-contrast="on"] .auth-form-card__footer {
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .auth-brand-panel__title,
+[data-high-contrast="on"] .auth-brand-panel__title span {
+  color: #FFFF00 !important;
+}
+
+[data-high-contrast="on"] .auth-brand-panel__tagline,
+[data-high-contrast="on"] .auth-brand-panel__hindi {
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .auth-feature,
+[data-high-contrast="on"] .auth-feature span {
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .auth-progress__label {
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .auth-progress__step.active .auth-progress__circle {
+  background: #FFFF00 !important;
+  color: #000000 !important;
+  border-color: #FFFF00 !important;
+}
+
+[data-high-contrast="on"] .auth-progress__circle {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #FFFF00 !important;
+}
+
+[data-high-contrast="on"] .auth-progress__line.active {
+  background: #FFFF00 !important;
+}
+
+[data-high-contrast="on"] .auth-otp-sent {
+  color: #FFFF00 !important;
+  background: #000000 !important;
+  border: 1px solid #FFFF00 !important;
+}
+
+/* Payment Method Cards (reuses language-card class) */
+[data-high-contrast="on"] .language-card {
+  background: #000000 !important;
+  border: 2px solid #FFFF00 !important;
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .language-card:hover {
+  background: #000000 !important;
+  border-color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .language-card.selected {
+  background: #FFFF00 !important;
+  border-color: #FFFF00 !important;
+  color: #000000 !important;
+}
+
+[data-high-contrast="on"] .language-card.selected .language-card__native,
+[data-high-contrast="on"] .language-card.selected div {
+  color: #000000 !important;
+}
+
+[data-high-contrast="on"] .language-card__native {
+  color: #FFFFFF !important;
+}
+
+/* Service Tabs */
+[data-high-contrast="on"] .service-tab {
+  background: #000000 !important;
+  border: 2px solid #FFFF00 !important;
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .service-tab.active {
+  background: #FFFF00 !important;
+  color: #000000 !important;
+}
+
+[data-high-contrast="on"] .service-tab.active svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+[data-high-contrast="on"] .service-tab:hover {
+  border-color: #FFFFFF !important;
+}
+
+/* Breadcrumb */
+[data-high-contrast="on"] .breadcrumb {
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .breadcrumb a {
+  color: #FFFF00 !important;
+}
+
+[data-high-contrast="on"] .breadcrumb__separator {
+  color: #FFFFFF !important;
+}
+
+/* Virtual Keyboard */
+[data-high-contrast="on"] .virtual-keyboard button {
+  background: #000000;
+  color: #FFFFFF;
+  border: 1px solid #FFFF00;
+}
+
+[data-high-contrast="on"] .virtual-keyboard button:hover {
+  background: #FFFF00;
+  color: #000000 !important;
+  border-color: #FFFF00;
+}
+
+/* Screen Reader bar */
+[data-high-contrast="on"] .sr-control-bar {
+  background: #000000;
+  border: 1.5px solid #FFFF00;
+  box-shadow: none;
+}
+
+/* Headings in high contrast */
+[data-high-contrast="on"] h1,
+[data-high-contrast="on"] h2,
+[data-high-contrast="on"] h3,
+[data-high-contrast="on"] h4,
+[data-high-contrast="on"] h5,
+[data-high-contrast="on"] h6 {
+  color: #FFFFFF;
+}
+
+/* Tricolor bar in HC mode — slightly brighter */
+[data-high-contrast="on"] .tricolor-bar {
+  background: linear-gradient(90deg, #FF9933 0%, #FF9933 30%, #FFFFFF 45%, #FFFFFF 55%, #FFFFFF 70%, #FFFFFF 100%);
+  height: 8px;
+}
+
+/* ================================
+   HIGH CONTRAST — Page-Specific Overrides
+   These use !important to override inline styles
+   ================================ */
+
+/* --- Citizen Dashboard — Bento Cards --- */
+[data-high-contrast="on"] .bento-card {
+  background: #000000 !important;
+  border: 2px solid rgba(255, 255, 0, 1) !important;
+}
+
+[data-high-contrast="on"] .bento-card:hover {
+  border-color: #FFFF00 !important;
+  box-shadow: 0 0 24px rgba(255, 255, 0, 1) !important;
+}
+
+[data-high-contrast="on"] .bento-card__name {
+  color: #FFFF00 !important;
+  font-weight: 800 !important;
+  font-size: 1.1rem !important;
+}
+
+[data-high-contrast="on"] .bento-card__stat {
+  color: #FFFFFF !important;
+  font-weight: 900 !important;
+}
+
+[data-high-contrast="on"] .bento-card__stat-label {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+}
+
+[data-high-contrast="on"] .bento-card__logo {
+  background: rgba(255, 255, 0, 1) !important;
+  border: 1px solid rgba(255, 255, 0, 1);
+}
+
+[data-high-contrast="on"] .bento-card__logo svg {
+  color: #FFFF00 !important;
+  stroke: #FFFF00 !important;
+}
+
+[data-high-contrast="on"] .bento-card__cta svg {
+  color: #FFFF00 !important;
+  stroke: #FFFF00 !important;
+}
+
+[data-high-contrast="on"] .bento-card__deco svg {
+  color: rgba(255, 255, 0, 1) !important;
+  stroke: rgba(255, 255, 0, 1) !important;
+}
+
+/* --- Citizen Dashboard — Welcome Hero --- */
+[data-high-contrast="on"] .welcome-hero {
+  background: #000000 !important;
+  border: 1px solid rgba(255, 255, 0, 1);
+}
+
+[data-high-contrast="on"] .welcome-hero__greeting {
+  color: #FFFFFF !important;
+  font-size: 1.6rem !important;
+}
+
+[data-high-contrast="on"] .welcome-hero__name {
+  color: #FFFF00 !important;
+}
+
+[data-high-contrast="on"] .welcome-hero__subtitle {
+  color: #FFFFFF !important;
+  font-size: 1.05rem !important;
+}
+
+[data-high-contrast="on"] .section-title-accent {
+  color: #FFFF00 !important;
+}
+
+[data-high-contrast="on"] .section-title-count {
+  color: #FFFFFF !important;
+}
+
+/* --- Bento Grid area background override --- */
+[data-high-contrast="on"] .bento-grid {
+  gap: 1.5rem;
+}
+
+/* --- Admin Dashboard --- */
+[data-high-contrast="on"] .admin-stat-card {
+  background: #000000 !important;
+  border: 2px solid rgba(255, 255, 0, 1) !important;
+}
+
+[data-high-contrast="on"] .admin-stat-card__value {
+  color: #FFFF00 !important;
+  font-weight: 900 !important;
+}
+
+[data-high-contrast="on"] .admin-stat-card__label {
+  color: #FFFFFF !important;
+}
+
+/* --- Bill Payment / Quick Bill Payment --- */
+[data-high-contrast="on"] .bill-service-btn {
+  background: #000000 !important;
+  border: 2px solid rgba(255, 255, 0, 1) !important;
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .bill-service-btn.active,
+[data-high-contrast="on"] .bill-service-btn:hover {
+  border-color: #FFFF00 !important;
+  background: rgba(255, 255, 0, 1) !important;
+}
+
+[data-high-contrast="on"] .bill-detail-row {
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .bill-detail-row span:first-child {
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .bill-detail-row span:last-child {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+/* --- Grievance / Quick Grievance — Info Banner --- */
+[data-high-contrast="on"] .grievance-info,
+[data-high-contrast="on"] [style*="color: #FFFF00"] {
+  color: #FFFF00 !important;
+  background: rgba(56, 189, 248, 0.12) !important;
+}
+
+/* --- Track Status --- */
+[data-high-contrast="on"] .status-badge {
+  background: rgba(255, 255, 0, 1) !important;
+  color: #FFFF00 !important;
+  border: 1px solid rgba(255, 255, 0, 1) !important;
+  font-weight: 700 !important;
+}
+
+[data-high-contrast="on"] .track-card {
+  background: #000000 !important;
+  border: 2px solid rgba(255, 255, 0, 1) !important;
+}
+
+[data-high-contrast="on"] .track-card__title {
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .track-card__detail {
+  color: #FFFFFF !important;
+}
+
+/* --- My Documents --- */
+[data-high-contrast="on"] .doc-type-badge {
+  background: rgba(255, 255, 0, 1) !important;
+  color: #FFFF00 !important;
+  border: 1px solid rgba(255, 255, 0, 1) !important;
+}
+
+[data-high-contrast="on"] .doc-table td,
+[data-high-contrast="on"] .doc-table th {
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 0, 1) !important;
+}
+
+[data-high-contrast="on"] .doc-table tr:hover {
+  background: rgba(255, 255, 0, 1) !important;
+}
+
+/* --- General body text and paragraph overrides --- */
+[data-high-contrast="on"] p {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] span {
+  color: inherit;
+}
+
+[data-high-contrast="on"] label {
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .form-group label {
+  color: #FFFF00 !important;
+}
+
+/* --- Payment method buttons --- */
+[data-high-contrast="on"] .payment-method-card {
+  background: #000000 !important;
+  border: 2px solid rgba(255, 255, 0, 1) !important;
+  color: #FFFFFF !important;
+}
+
+[data-high-contrast="on"] .payment-method-card.selected,
+[data-high-contrast="on"] .payment-method-card:hover {
+  border-color: #FFFF00 !important;
+  background: rgba(255, 255, 0, 1) !important;
+}
+
+/* --- Receipt/Success screens --- */
+[data-high-contrast="on"] .receipt-card,
+[data-high-contrast="on"] .success-card {
+  background: #000000 !important;
+  border: 2px solid rgba(74, 222, 128, 0.4) !important;
+}
+
+/* --- Alert/Admin Boxes --- */
+[data-high-contrast="on"] .admin-alert-card {
+  background: #000000 !important;
+  border: 1.5px solid rgba(255, 255, 0, 1) !important;
+}
+
+[data-high-contrast="on"] .admin-alert-card span {
+  color: #FFFF00 !important;
+}
+
+/* --- Table overrides --- */
+[data-high-contrast="on"] table {
+  border-color: rgba(255, 255, 0, 1) !important;
+}
+
+[data-high-contrast="on"] th {
+  background: #000000 !important;
+  color: #FFFF00 !important;
+  border-color: rgba(255, 255, 0, 1) !important;
+}
+
+[data-high-contrast="on"] td {
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 0, 1) !important;
+}
+
+[data-high-contrast="on"] tr:hover td {
+  background: rgba(255, 255, 0, 1) !important;
+}
+
+/* --- Dashboard chart bars --- */
+[data-high-contrast="on"] .chart-bar {
+  background: #FFFF00 !important;
+}
+
+/* --- Global strong text --- */
+[data-high-contrast="on"] strong,
+[data-high-contrast="on"] b {
+  color: #FFFFFF;
+}
+
+/* ================================
+   GLOBAL ACCESSIBILITY BAR
+   ================================ */
+.accessibility-bar {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 6px 0;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+}
+
+.accessibility-bar__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.accessibility-bar__action {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #000080;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 3px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.accessibility-bar__action:hover {
+  color: var(--corporate-blue-light);
+  background: rgba(11, 83, 148, 0.06);
+}
+
+.accessibility-bar__divider {
+  width: 1px;
+  height: 14px;
+  background: #ccc;
+}
+
+.accessibility-bar__font-scaler {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.accessibility-bar__font-scaler button {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #000080;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.accessibility-bar__font-scaler button:hover {
+  color: var(--corporate-blue-light);
+  background: rgba(11, 83, 148, 0.06);
+}
+
+.accessibility-bar__lang {
+  background: transparent;
+  padding: 3px 6px;
+}
+
+/* High Contrast toggle — active state */
+.accessibility-bar__action--active {
+  color: #B45309 !important;
+  background: #FFFF00 !important;
+  font-weight: 800;
+}
+
+/* Screen Reader toggle — active state */
+.accessibility-bar__action--sr-active {
+  color: #0B5394 !important;
+  background: rgba(11, 83, 148, 0.1) !important;
+}
+
+/* High Contrast overrides for Accessibility Bar */
+[data-high-contrast="on"] .accessibility-bar {
+  background: #000000;
+  border-bottom: 1px solid #FFFF00;
+}
+
+[data-high-contrast="on"] .accessibility-bar__action {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .accessibility-bar__action:hover {
+  color: #FFFF00;
+  background: #FFFF00;
+}
+
+[data-high-contrast="on"] .accessibility-bar__action--active {
+  color: #000000 !important;
+  background: #FFFF00 !important;
+  font-weight: 900;
+}
+
+[data-high-contrast="on"] .accessibility-bar__divider {
+  background: #FFFF00;
+}
+
+[data-high-contrast="on"] .accessibility-bar__font-scaler button {
+  color: #FFFFFF;
+}
+
+[data-high-contrast="on"] .accessibility-bar__font-scaler button:hover {
+  color: #FFFF00;
+}
+
+/* ================================
    BASE RESET & TYPOGRAPHY
    ================================ */
 *,

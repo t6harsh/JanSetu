@@ -2,6 +2,7 @@ import { useState, createContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ScreenReaderProvider from './components/ScreenReaderProvider';
+import AccessibilityBar from './components/AccessibilityBar';
 import Layout from './components/Layout';
 import IdleScreen from './pages/IdleScreen';
 import LanguageSelect from './pages/LanguageSelect';
@@ -23,10 +24,23 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [citizenName, setCitizenName] = useState('');
   const [userRole, setUserRole] = useState(null); // 'citizen' | 'admin'
+  const [highContrast, setHighContrast] = useState(false);
 
   const changeFontScale = (scale) => {
     setFontScale(scale);
     document.documentElement.setAttribute('data-font-scale', scale);
+  };
+
+  const toggleHighContrast = () => {
+    const next = !highContrast;
+    setHighContrast(next);
+    if (next) {
+      document.documentElement.setAttribute('data-high-contrast', 'on');
+      changeFontScale('large');
+    } else {
+      document.documentElement.removeAttribute('data-high-contrast');
+      changeFontScale('default');
+    }
   };
 
   const changeLanguage = (lng) => {
@@ -49,10 +63,12 @@ function App() {
     <AppContext.Provider value={{
       fontScale, changeFontScale,
       changeLanguage, currentLang: i18n.language,
-      isAuthenticated, login, logout, citizenName, userRole
+      isAuthenticated, login, logout, citizenName, userRole,
+      highContrast, toggleHighContrast
     }}>
       <ScreenReaderProvider>
         <div className="app-layout" data-font-scale={fontScale}>
+          <AccessibilityBar />
           <Routes>
             <Route path="/" element={<IdleScreen />} />
             <Route path="/language" element={<LanguageSelect />} />

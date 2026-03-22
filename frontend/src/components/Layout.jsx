@@ -3,7 +3,7 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../App';
 import { useScreenReader } from './ScreenReaderProvider';
-import { LogOut, Monitor, Type, Volume2, VolumeX, ChevronDown, LayoutDashboard, CreditCard, MessageSquareWarning, Search, FileText, Settings, BarChart3, AlertCircle, BookOpen, Square, X } from 'lucide-react';
+import { LogOut, Monitor, Type, Volume2, VolumeX, ChevronDown, LayoutDashboard, CreditCard, MessageSquareWarning, Search, FileText, Settings, BarChart3, AlertCircle, BookOpen, Square, X, Eye, EyeOff } from 'lucide-react';
 
 const citizenNavLinks = [
     { labelKey: 'nav_services', path: '/dashboard', icon: LayoutDashboard },
@@ -24,7 +24,7 @@ export default function Layout() {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
-    const { fontScale, changeFontScale, currentLang, changeLanguage, isAuthenticated, logout, userRole } = useContext(AppContext);
+    const { fontScale, changeFontScale, currentLang, changeLanguage, isAuthenticated, logout, userRole, highContrast, toggleHighContrast } = useContext(AppContext);
 
     const currentNavLinks = userRole === 'admin' ? adminNavLinks : citizenNavLinks;
     const { enabled: srEnabled, speaking, toggle: toggleSR, readPage, stop: stopSR } = useScreenReader();
@@ -38,35 +38,6 @@ export default function Layout() {
         <>
             {/* UIDAI Style Header */}
             <header className="uidai-header">
-                {/* Top Accessibility Bar */}
-                <div className="uidai-top-bar">
-                    <div className="uidai-top-bar__container">
-                        <a href="#main-content" className="uidai-top-action">
-                            <Monitor size={14} style={{ marginRight: '6px' }} /> {t('main_content')}
-                        </a>
-                        <div className="uidai-top-divider"></div>
-                        <div className="uidai-top-action">
-                            <Type size={14} style={{ marginRight: '6px' }} />
-                            <div className="uidai-font-scaler">
-                                <button onClick={() => changeFontScale('large')}>+ A</button>
-                                <button onClick={() => changeFontScale('default')}>A</button>
-                                <button onClick={() => changeFontScale('small')}>- A</button>
-                            </div>
-                        </div>
-                        <div className="uidai-top-divider"></div>
-                        <button className={`uidai-top-action ${srEnabled ? 'sr-active-btn' : ''}`} onClick={toggleSR}>
-                            {srEnabled ? <VolumeX size={14} style={{ marginRight: '6px' }} /> : <Volume2 size={14} style={{ marginRight: '6px' }} />}
-                            {t('screen_reader')} {srEnabled ? '●' : ''}
-                        </button>
-                        <div className="uidai-top-divider"></div>
-                        <button className="uidai-top-action lang-dropdown" onClick={() => changeLanguage(currentLang === 'en' ? 'hi' : 'en')}>
-                            <span style={{ fontWeight: 800, marginRight: '4px', fontSize: '1.2em' }}>अ</span>
-                            {currentLang === 'en' ? 'English' : 'हिंदी'}
-                            <ChevronDown size={14} style={{ marginLeft: '4px' }} />
-                        </button>
-                    </div>
-                </div>
-
                 {/* Logo Bar */}
                 <div className="uidai-logo-bar">
                     <div className="uidai-logo-bar__container">

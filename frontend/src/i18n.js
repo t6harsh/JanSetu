@@ -167,6 +167,7 @@ const resources = {
       "nav_content_management": "Content Management",
       "main_content": "Main Content",
       "screen_reader": "Screen Reader",
+      "high_contrast": "High Contrast",
       "unified_civic_services": "Unified Civic Services",
       "authority_of_india": "Authority of India",
       // Admin
@@ -373,6 +374,7 @@ const resources = {
       "nav_content_management": "सामग्री प्रबंधन",
       "main_content": "मुख्य सामग्री",
       "screen_reader": "स्क्रीन रीडर",
+      "high_contrast": "उच्च कंट्रास्ट",
       "unified_civic_services": "एकीकृत नागरिक सेवाएं",
       "authority_of_india": "भारत का प्राधिकरण",
       "admin_title": "व्यवस्थापक डैशबोर्ड",
