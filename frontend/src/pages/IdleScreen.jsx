@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../App';
-import { Zap, HandHelping, Users, Droplets, Wifi, ArrowRight } from 'lucide-react';
+import { Zap, HandHelping, Users, Droplets, Wifi, ArrowRight, Flame, MessageSquareWarning, CreditCard, Recycle, Building } from 'lucide-react';
 
 export default function IdleScreen() {
     const { t } = useTranslation();
@@ -38,6 +38,10 @@ export default function IdleScreen() {
 
     const handleTap = () => {
         navigate('/language');
+    };
+
+    const handleQuickService = (path) => {
+        navigate(path);
     };
 
     return (
@@ -123,6 +127,209 @@ export default function IdleScreen() {
                     </div>
                     <div className="idle-metric-card__value">{citizens.toLocaleString()}+</div>
                     <div className="idle-metric-card__label">{t('citizens_served')}</div>
+                </div>
+            </div>
+
+            {/* Quick Services Section (Sidebars) */}
+            <div className="quick-services-section" style={{
+                position: 'absolute',
+                top: '50%',
+                left: '2rem',
+                right: '2rem',
+                transform: 'translateY(-50%)',
+                pointerEvents: 'none',
+                zIndex: 50
+            }}>
+                <div className="quick-services-grid" style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    width: '100%',
+                    margin: '0 auto'
+                }}>
+                    {/* Left Side: Electricity, Gas */}
+                    <div className="quick-services-left" style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1.5rem',
+                        pointerEvents: 'auto'
+                    }}>
+                        {/* Electricity */}
+                        <button
+                            className="quick-service-card"
+                            onClick={(e) => { e.stopPropagation(); handleQuickService('/quick-bill-payment?service=electricity'); }}
+                            style={{
+                                background: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)',
+                                border: 'none',
+                                borderRadius: '8px',
+                                padding: '0.8rem 0.6rem',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '0.4rem',
+                                width: '190px',
+                                height: '165px',
+                                boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
+                            }}
+                        >
+                            <div style={{
+                                background: 'rgba(217,119,6,0.12)',
+                                borderRadius: '50%',
+                                padding: '0.75rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                border: '2px solid rgba(217,119,6,0.2)'
+                            }}>
+                                <Zap size={36} color="#D97706" />
+                            </div>
+                            <div style={{ textAlign: 'center' }}>
+                                <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.2rem', textTransform: 'uppercase' }}>
+                                    {t('electricity bill') || 'ELECTRICITY'}
+                                </div>
+                                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>
+                                    {t('pay without login') || 'PAY WITHOUT LOGIN'}
+                                </div>
+                            </div>
+                        </button>
+
+                        {/* Gas */}
+                        <button
+                            className="quick-service-card"
+                            onClick={(e) => { e.stopPropagation(); handleQuickService('/quick-bill-payment?service=gas'); }}
+                            style={{
+                                background: 'linear-gradient(135deg, #FFE6CC 0%, #FFDAB3 100%)',
+                                border: 'none',
+                                borderRadius: '8px',
+                                padding: '0.8rem 0.6rem',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '0.4rem',
+                                width: '190px',
+                                height: '165px',
+                                boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
+                            }}
+                        >
+                            <div style={{
+                                background: 'rgba(229,62,62,0.12)',
+                                borderRadius: '50%',
+                                padding: '0.75rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                border: '2px solid rgba(229,62,62,0.2)'
+                            }}>
+                                <Flame size={36} color="#E53E3E" />
+                            </div>
+                            <div style={{ textAlign: 'center' }}>
+                                <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.2rem', textTransform: 'uppercase' }}>
+                                    {t('gas bill payment') || 'GAS BILL PAYMENT'}
+                                </div>
+                                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>
+                                    {t('pay without login') || 'PAY WITHOUT LOGIN'}
+                                </div>
+                            </div>
+                        </button>
+
+                    </div>
+
+                    {/* Right Side: Water, Property Tax */}
+                    <div className="quick-services-right" style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1.5rem',
+                        pointerEvents: 'auto'
+                    }}>
+                        {/* Water */}
+                        <button
+                            className="quick-service-card"
+                            onClick={(e) => { e.stopPropagation(); handleQuickService('/quick-bill-payment?service=water'); }}
+                            style={{
+                                background: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)',
+                                border: 'none',
+                                borderRadius: '8px',
+                                padding: '0.8rem 0.6rem',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '0.4rem',
+                                width: '190px',
+                                height: '165px',
+                                boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
+                            }}
+                        >
+                            <div style={{
+                                background: 'rgba(11,83,148,0.12)',
+                                borderRadius: '50%',
+                                padding: '0.75rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                border: '2px solid rgba(11,83,148,0.2)'
+                            }}>
+                                <Droplets size={36} color="#0B5394" />
+                            </div>
+                            <div style={{ textAlign: 'center' }}>
+                                <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.2rem', textTransform: 'uppercase' }}>
+                                    {t('water bill') || 'WATER SUPPLY'}
+                                </div>
+                                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>
+                                    {t('pay without login') || 'PAY WITHOUT LOGIN'}
+                                </div>
+                            </div>
+                        </button>
+
+                        {/* Property Tax */}
+                        <button
+                            className="quick-service-card"
+                            onClick={(e) => { e.stopPropagation(); handleQuickService('/quick-bill-payment?service=property'); }}
+                            style={{
+                                background: 'linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)',
+                                border: 'none',
+                                borderRadius: '8px',
+                                padding: '0.8rem 0.6rem',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '0.4rem',
+                                width: '190px',
+                                height: '165px',
+                                boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
+                            }}
+                        >
+                            <div style={{
+                                background: 'rgba(124,58,237,0.12)',
+                                borderRadius: '50%',
+                                padding: '0.75rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                border: '2px solid rgba(124,58,237,0.2)'
+                            }}>
+                                <Building size={36} color="#7C3AED" />
+                            </div>
+                            <div style={{ textAlign: 'center' }}>
+                                <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.2rem', textTransform: 'uppercase' }}>
+                                    {t('property tax') || 'PROPERTY TAX'}
+                                </div>
+                                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>
+                                    {t('pay without login') || 'PAY WITHOUT LOGIN'}
+                                </div>
+                            </div>
+                        </button>
+                    </div>
                 </div>
             </div>
 
