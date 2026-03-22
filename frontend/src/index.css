@@ -2593,3 +2593,14 @@ textarea:focus {
     transform: scale(1.15);
   }
 }
+
+/* Quick Services Hover Effects */
+.quick-service-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.quick-service-card:active {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}

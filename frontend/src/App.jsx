@@ -12,6 +12,8 @@ import GrievanceForm from './pages/GrievanceForm';
 import TrackStatus from './pages/TrackStatus';
 import MyDocuments from './pages/MyDocuments';
 import AdminDashboard from './pages/AdminDashboard';
+import QuickBillPayment from './pages/QuickBillPayment';
+import QuickGrievance from './pages/QuickGrievance';
 
 export const AppContext = createContext();
 
@@ -55,6 +57,8 @@ function App() {
             <Route path="/" element={<IdleScreen />} />
             <Route path="/language" element={<LanguageSelect />} />
             <Route path="/auth" element={<AuthScreen />} />
+            <Route path="/quick-bill-payment" element={<QuickBillPayment />} />
+            <Route path="/quick-grievance" element={<QuickGrievance />} />
             <Route element={<Layout />}>
               <Route path="/dashboard" element={
                 isAuthenticated
