@@ -187,10 +187,10 @@ export default function IdleScreen() {
                             </div>
                             <div style={{ textAlign: 'center' }}>
                                 <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.2rem', textTransform: 'uppercase' }}>
-                                    {t('electricity bill') || 'ELECTRICITY'}
+                                    {t('service_electricity')}
                                 </div>
                                 <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>
-                                    {t('pay without login') || 'PAY WITHOUT LOGIN'}
+                                    {t('pay_without_login')}
                                 </div>
                             </div>
                         </button>
@@ -229,10 +229,10 @@ export default function IdleScreen() {
                             </div>
                             <div style={{ textAlign: 'center' }}>
                                 <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.2rem', textTransform: 'uppercase' }}>
-                                    {t('gas bill payment') || 'GAS BILL PAYMENT'}
+                                    {t('quick_gas_bill')}
                                 </div>
                                 <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>
-                                    {t('pay without login') || 'PAY WITHOUT LOGIN'}
+                                    {t('pay_without_login')}
                                 </div>
                             </div>
                         </button>
@@ -280,10 +280,10 @@ export default function IdleScreen() {
                             </div>
                             <div style={{ textAlign: 'center' }}>
                                 <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.2rem', textTransform: 'uppercase' }}>
-                                    {t('water bill') || 'WATER SUPPLY'}
+                                    {t('service_water')}
                                 </div>
                                 <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>
-                                    {t('pay without login') || 'PAY WITHOUT LOGIN'}
+                                    {t('pay_without_login')}
                                 </div>
                             </div>
                         </button>
@@ -322,10 +322,10 @@ export default function IdleScreen() {
                             </div>
                             <div style={{ textAlign: 'center' }}>
                                 <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.2rem', textTransform: 'uppercase' }}>
-                                    {t('property tax') || 'PROPERTY TAX'}
+                                    {t('service_property')}
                                 </div>
                                 <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>
-                                    {t('pay without login') || 'PAY WITHOUT LOGIN'}
+                                    {t('pay_without_login')}
                                 </div>
                             </div>
                         </button>
