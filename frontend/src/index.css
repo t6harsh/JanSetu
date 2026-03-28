@@ -3,6 +3,12 @@
    Government UX4G Inspired
    ================================ */
 
+/* Emergency fix for black screen */
+html, body, #root {
+  background: #FAFBFD !important;
+  color: #1A1A2E !important;
+}
+
 :root {
   /* --- Government Color Palette --- */
   --saffron: #FF9933;
@@ -1083,12 +1089,18 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #FAFBFD;
+}
+
+#root {
+  background: #FAFBFD;
+  min-height: 100vh;
 }
 
 body {
   font-family: var(--font-primary);
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  background: var(--bg-primary) #FAFBFD;
+  color: var(--text-primary) #1A1A2E;
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
@@ -1432,6 +1444,7 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: #FAFBFD;
 }
 
 .main-content {
@@ -3124,7 +3137,7 @@ textarea:focus {
   grid-template-areas:
     "elec  gas   water water"
     "elec  waste prop  prop"
-    "griev griev docs  track";
+    "griev-small griev docs  track";
   gap: 0.85rem;
   max-width: 1400px;
   margin: 0 auto;
@@ -3234,7 +3247,8 @@ textarea:focus {
       "elec  gas"
       "water waste"
       "prop  griev"
-      "docs  track";
+      "docs  track"
+      "griev-small griev-small";
   }
 
   .welcome-hero__greeting {
@@ -3295,7 +3309,8 @@ textarea:focus {
       "prop"
       "griev"
       "docs"
-      "track";
+      "track"
+      "griev-small";
   }
 }
 
@@ -3591,4 +3606,176 @@ textarea:focus {
 .quick-service-card:active {
   transform: translateY(-2px) scale(1.01);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* ================================
+   VOICE ASSISTANT
+   ================================ */
+
+/* Floating Action Button */
+.va-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 10001;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a73e8, #0B5394);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  box-shadow: 0 6px 24px rgba(11, 83, 148, 0.45), 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease, background 0.2s ease;
+  outline: none;
+}
+
+.va-fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 32px rgba(11, 83, 148, 0.55);
+}
+
+.va-fab:active {
+  transform: scale(0.95);
+}
+
+.va-fab__label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  line-height: 1;
+}
+
+/* Pulsing ring when listening */
+.va-fab__ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 3px solid rgba(26, 115, 232, 0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.va-fab--listening {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  box-shadow: 0 6px 24px rgba(220, 38, 38, 0.5);
+}
+
+/* Active (on but momentarily not listening — speaking/processing) */
+.va-fab--active {
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 6px 24px rgba(5, 150, 105, 0.5);
+}
+
+.va-fab--listening .va-fab__ring {
+  opacity: 1;
+  animation: va-ring-pulse 1.3s ease-out infinite;
+}
+
+@keyframes va-ring-pulse {
+  0%   { transform: scale(1);    opacity: 0.8; }
+  70%  { transform: scale(1.55); opacity: 0; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+
+/* Speech bubble */
+.va-bubble {
+  position: fixed;
+  bottom: 7.5rem;
+  right: 1.5rem;
+  z-index: 10001;
+  max-width: 280px;
+  min-width: 180px;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  color: #f8fafc;
+  border-radius: 16px 16px 4px 16px;
+  padding: 0.85rem 1rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events: none;
+}
+
+.va-bubble--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.va-bubble__icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.va-bot-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.va-bubble__text {
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.45;
+  margin: 0;
+  flex: 1;
+  word-break: break-word;
+}
+
+.va-bubble__close {
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.12);
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #f8fafc;
+  padding: 0;
+  transition: background 0.15s;
+}
+
+.va-bubble__close:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+/* Waveform animation (shown when listening) */
+.va-waveform {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 20px;
+}
+
+.va-waveform span {
+  display: block;
+  width: 3px;
+  border-radius: 3px;
+  background: #60a5fa;
+  animation: va-wave 1.1s ease-in-out infinite;
+}
+
+.va-waveform span:nth-child(1) { animation-delay: 0s;    height: 6px; }
+.va-waveform span:nth-child(2) { animation-delay: 0.15s; height: 14px; }
+.va-waveform span:nth-child(3) { animation-delay: 0.3s;  height: 20px; }
+.va-waveform span:nth-child(4) { animation-delay: 0.45s; height: 14px; }
+.va-waveform span:nth-child(5) { animation-delay: 0.6s;  height: 6px; }
+
+@keyframes va-wave {
+  0%, 100% { transform: scaleY(0.4); }
+  50%       { transform: scaleY(1); }
 }

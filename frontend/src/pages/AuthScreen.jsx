@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from 'react';
+import { useState, useContext, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../App';
@@ -105,6 +105,45 @@ export default function AuthScreen() {
         setOtp(['', '', '', '', '', '']);
         otpRefs.current[0]?.focus();
     };
+
+    // Handle voice assistant fill events
+    useEffect(() => {
+        const handleVaFill = (e) => {
+            const { digits } = e.detail;
+            if (digits && step === 1) {
+                // Handle Aadhaar input
+                const currentDigits = aadhaar.replace(/\s/g, '');
+                if (currentDigits.length < 12) {
+                    setAadhaar(formatAadhaar(currentDigits + digits));
+                }
+            } else if (digits && step === 2) {
+                // Handle OTP input
+                const firstEmpty = otp.findIndex(d => d === '');
+                if (firstEmpty !== -1 && digits.length > 0) {
+                    // Fill OTP digits one by one
+                    let newOtp = [...otp];
+                    let otpIndex = firstEmpty;
+                    for (let i = 0; i < digits.length && otpIndex < 6; i++) {
+                        newOtp[otpIndex] = digits[i];
+                        otpIndex++;
+                    }
+                    setOtp(newOtp);
+                    // Focus next empty input
+                    if (otpIndex < 6) {
+                        otpRefs.current[otpIndex]?.focus();
+                    }
+                }
+            }
+        };
+
+        const aadhaarInput = document.getElementById('aadhaar-input');
+        if (aadhaarInput) {
+            aadhaarInput.addEventListener('va-fill', handleVaFill);
+            return () => {
+                aadhaarInput.removeEventListener('va-fill', handleVaFill);
+            };
+        }
+    }, [aadhaar, step, otp]);
 
     return (
         <div className="auth-page">

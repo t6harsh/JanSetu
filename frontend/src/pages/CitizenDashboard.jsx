@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../App';
-import { Zap, Flame, Droplets, Trash2, Landmark, MessageSquareWarning, FileText, Search, ArrowRight } from 'lucide-react';
+import { Zap, Flame, Droplets, Trash2, Landmark, MessageSquareWarning, FileText, Search, ArrowRight, Plus } from 'lucide-react';
 
 const services = [
     {
@@ -51,7 +51,7 @@ const services = [
         gradient: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)',
         iconColor: '#D69E2E', iconBg: 'rgba(214,158,46,0.12)',
         decoColor: '#D69E2E',
-        gridArea: 'griev',
+        gridArea: 'griev-small',
     },
     {
         key: 'documents', icon: FileText, path: '/documents',
@@ -68,6 +68,14 @@ const services = [
         iconColor: '#059669', iconBg: 'rgba(5,150,105,0.12)',
         decoColor: '#059669',
         gridArea: 'track',
+    },
+    {
+        key: 'new_connection', icon: Plus, path: '/new-connection',
+        stat: '24.5k', statLabelKey: 'stat_connections_pending',
+        gradient: 'linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%)',
+        iconColor: '#0284C7', iconBg: 'rgba(2,132,199,0.12)',
+        decoColor: '#0284C7',
+        gridArea: 'griev',
     },
 ];
 
