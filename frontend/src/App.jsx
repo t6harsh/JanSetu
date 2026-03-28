@@ -12,9 +12,12 @@ import BillPayment from './pages/BillPayment';
 import GrievanceForm from './pages/GrievanceForm';
 import TrackStatus from './pages/TrackStatus';
 import MyDocuments from './pages/MyDocuments';
+import NewConnection from './pages/NewConnection';
+import ConnectionForm from './pages/ConnectionForm';
 import AdminDashboard from './pages/AdminDashboard';
 import QuickBillPayment from './pages/QuickBillPayment';
 import QuickGrievance from './pages/QuickGrievance';
+import VoiceAssistant from './components/VoiceAssistant';
 
 export const AppContext = createContext();
 
@@ -69,6 +72,7 @@ function App() {
       <ScreenReaderProvider>
         <div className="app-layout" data-font-scale={fontScale}>
           <AccessibilityBar />
+          <VoiceAssistant />
           <Routes>
             <Route path="/" element={<IdleScreen />} />
             <Route path="/language" element={<LanguageSelect />} />
@@ -92,6 +96,12 @@ function App() {
               } />
               <Route path="/documents" element={
                 isAuthenticated ? <MyDocuments /> : <Navigate to="/auth" />
+              } />
+              <Route path="/new-connection" element={
+                isAuthenticated ? <NewConnection /> : <Navigate to="/auth" />
+              } />
+              <Route path="/connection-form" element={
+                isAuthenticated ? <ConnectionForm /> : <Navigate to="/auth" />
               } />
               <Route path="/admin" element={
                 isAuthenticated && userRole === 'admin' ? <Navigate to="/dashboard" /> : <Navigate to="/dashboard" />

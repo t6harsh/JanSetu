@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ArrowRight, CreditCard, CheckCircle, Printer, Download, Home, Zap, Flame, Droplets, Trash2, Landmark } from 'lucide-react';
@@ -32,6 +32,17 @@ export default function QuickBillPayment() {
     const [consumerId, setConsumerId] = useState('');
     const [loading, setLoading] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState('');
+
+    // Listen for voice-assistant fill events on the consumer-id input
+    useEffect(() => {
+        const el = document.getElementById('consumer-id');
+        if (!el) return;
+        const handler = (e) => {
+            setConsumerId(prev => prev + (e.detail?.digits || ''));
+        };
+        el.addEventListener('va-fill', handler);
+        return () => el.removeEventListener('va-fill', handler);
+    }, [wizardStep]); // re-bind when step changes (element remounts)
 
     const bill = mockBills[serviceType];
     const serviceInfo = serviceIcons[serviceType] || serviceIcons.electricity;

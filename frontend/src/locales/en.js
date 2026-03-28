@@ -45,6 +45,7 @@ export default {
     "service_grievance": "Register Grievance",
     "service_documents": "My Documents",
     "service_status": "Track Status",
+    "service_new_connection": "New Connection",
     "stat_bills_processed": "Bills Processed",
     "stat_connections_active": "Connections Active",
     "stat_meters_monitored": "Meters Monitored",
@@ -53,6 +54,7 @@ export default {
     "stat_resolved_month": "Resolved This Month",
     "stat_certificate_types": "Certificate Types",
     "stat_requests_tracked": "Requests Tracked",
+    "stat_connections_pending": "Connections Pending",
     "desc_electricity": "View bills, pay dues, new connections",
     "desc_gas": "Billing, new connections, complaints",
     "desc_water": "Bills, meter reading, supply info",
@@ -202,5 +204,6 @@ export default {
     "default_font": "Default Font Size",
     "footer_text": "© 2026 JanSetu SUVIDHA | C-DAC | Ministry of Electronics & IT | Smart City Mission",
     "help": "Help",
-    "emergency": "Emergency: 112"
+    "emergency": "Emergency: 112",
+    "new_connection": "New Connection"
 };

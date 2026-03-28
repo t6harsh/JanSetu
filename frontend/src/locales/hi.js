@@ -45,6 +45,7 @@ export default {
     "service_grievance": "शिकायत दर्ज करें",
     "service_documents": "मेरे दस्तावेज़",
     "service_status": "स्थिति ट्रैक करें",
+    "service_new_connection": "नया कनेक्शन",
     "stat_bills_processed": "बिल प्रोसेस किए गए",
     "stat_connections_active": "सक्रिय कनेक्शन",
     "stat_meters_monitored": "मॉनिटर किए गए मीटर",
@@ -53,6 +54,7 @@ export default {
     "stat_resolved_month": "इस महीने हल की गईं",
     "stat_certificate_types": "प्रमाणपत्र प्रकार",
     "stat_requests_tracked": "अनुरोध ट्रैक किए गए",
+    "stat_connections_pending": "लंबित कनेक्शन",
     "desc_electricity": "बिल देखें, भुगतान करें, नया कनेक्शन",
     "desc_gas": "बिलिंग, नया कनेक्शन, शिकायतें",
     "desc_water": "बिल, मीटर रीडिंग, आपूर्ति जानकारी",
@@ -202,5 +204,6 @@ export default {
     "default_font": "डिफ़ॉल्ट फ़ॉन्ट आकार",
     "footer_text": "© 2026 जनसेतु सुविधा | C-DAC | इलेक्ट्रॉनिक्स और सूचना प्रौद्योगिकी मंत्रालय",
     "help": "सहायता",
-    "emergency": "आपातकालीन: 112"
+    "emergency": "आपातकालीन: 112",
+    "new_connection": "नया कनेक्शन"
 };

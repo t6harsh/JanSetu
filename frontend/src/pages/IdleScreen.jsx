@@ -9,6 +9,17 @@ export default function IdleScreen() {
     const navigate = useNavigate();
     const { changeFontScale } = useContext(AppContext);
 
+    // Live clock
+    const [currentTime, setCurrentTime] = useState(new Date());
+
+    useEffect(() => {
+        const clockTimer = setInterval(() => setCurrentTime(new Date()), 1000);
+        return () => clearInterval(clockTimer);
+    }, []);
+
+    const formatTime = (date) => date.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+    const formatDate = (date) => date.toLocaleDateString('en-IN', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' });
+
     // Animated counters
     const [bills, setBills] = useState(0);
     const [complaints, setComplaints] = useState(0);
@@ -46,6 +57,34 @@ export default function IdleScreen() {
 
     return (
         <div className="idle-screen animate-fade-in" onClick={handleTap} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleTap()}>
+            {/* Live Clock - Upper Left */}
+            <div
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                    position: 'fixed',
+                    top: '18px',
+                    left: '18px',
+                    zIndex: 100,
+                    background: 'rgba(255,255,255,0.92)',
+                    backdropFilter: 'blur(8px)',
+                    borderRadius: '12px',
+                    padding: '0.45rem 0.85rem',
+                    boxShadow: '0 2px 12px rgba(0,0,0,0.10)',
+                    border: '1px solid rgba(0,0,0,0.07)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    minWidth: '145px'
+                }}
+            >
+                <div style={{ fontSize: '1.35rem', fontWeight: 700, letterSpacing: '0.04em', color: '#1e293b', lineHeight: 1.1, fontVariantNumeric: 'tabular-nums' }}>
+                    {formatTime(currentTime)}
+                </div>
+                <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: '0.15rem', fontWeight: 500 }}>
+                    {formatDate(currentTime)}
+                </div>
+            </div>
+
             {/* Tricolor Bar */}
             <div className="tricolor-bar" role="presentation" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10 }}>
                 <div className="tricolor-bar__saffron"></div>
@@ -362,7 +401,23 @@ export default function IdleScreen() {
                 <span>{t('footer_text')}</span>
                 <div className="idle-footer__links">
                     <a href="#">{t('help')}</a>
-                    <a href="#">{t('emergency')}</a>
+                    <a
+                        href="#"
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                            background: '#fee2e2',
+                            color: '#b91c1c',
+                            border: '1.5px solid #fca5a5',
+                            borderRadius: '6px',
+                            padding: '0.25rem 0.75rem',
+                            fontWeight: 700,
+                            textDecoration: 'none',
+                            fontSize: '0.85rem',
+                            letterSpacing: '0.03em'
+                        }}
+                    >
+                        🚨 {t('emergency')}
+                    </a>
                 </div>
             </footer>
         </div>
