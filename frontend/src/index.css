@@ -132,6 +132,15 @@ html, body, #root {
   background: #000000;
 }
 
+/* Main Layout */
+[data-high-contrast="on"] .app-layout {
+  background: #000000 !important;
+}
+
+[data-high-contrast="on"] .main-content {
+  background: #000000 !important;
+}
+
 /* Header overrides */
 [data-high-contrast="on"] .uidai-header {
   background: #000000;
@@ -784,6 +793,7 @@ html, body, #root {
 /* --- Bento Grid area background override --- */
 [data-high-contrast="on"] .bento-grid {
   gap: 1.5rem;
+  background: #000000 !important;
 }
 
 /* --- Admin Dashboard --- */
